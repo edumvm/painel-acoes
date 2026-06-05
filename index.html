@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel de Ações</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0/dist/chart.umd.js" integrity="sha384-iU8HYtnGQ8Cy4zl7gbNMOhsDTTKX02BTXptVP/vqAWIaTfM7isw76iyZCsjL2eVi" crossorigin="anonymous"></script>
+  <style>
+    :root { color-scheme: light; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f4f6f9; color: #1a1a2e; padding: 20px; }
+
+    .header { margin-bottom: 20px; }
+    .header h1 { font-size: 1.4rem; font-weight: 800; color: #0f172a; letter-spacing: -0.02em; }
+    .header .subtitle { font-size: 0.75rem; color: #94a3b8; margin-top: 3px; }
+
+    .stocks-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 20px; }
+
+    .card { background: #fff; border-radius: 14px; padding: 14px; box-shadow: 0 1px 3px rgba(0,0,0,0.07); border-top: 3px solid #e2e8f0; transition: transform 0.15s; }
+    .card:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+    .card.col-green  { border-top-color: #22c55e; }
+    .card.col-red    { border-top-color: #ef4444; }
+    .card.col-yellow { border-top-color: #f59e0b; }
+    .card.col-blue   { border-top-color: #3b82f6; }
+    .card.col-purple { border-top-color: #8b5cf6; }
+    .card.col-orange { border-top-color: #f97316; }
+
+    .card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
+    .ticker-row { display: flex; align-items: center; gap: 6px; }
+    .ticker { font-size: 1.05rem; font-weight: 800; color: #0f172a; letter-spacing: 0.02em; }
+    .new-dot { width: 8px; height: 8px; border-radius: 50%; background: #ef4444; flex-shrink: 0; box-shadow: 0 0 0 2px #fee2e2; margin-top: 1px; }
+    .company { font-size: 0.68rem; color: #94a3b8; margin-top: 1px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 120px; }
+    .price-block { text-align: right; }
+    .price { font-size: 1.05rem; font-weight: 700; color: #0f172a; }
+    .price-date { font-size: 0.62rem; color: #cbd5e1; }
+
+    .metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 8px; }
+    .metric { background: #f8fafc; border-radius: 8px; padding: 6px 8px; }
+    .m-label { font-size: 0.62rem; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.04em; font-weight: 600; }
+    .m-value { font-size: 0.88rem; font-weight: 700; color: #1e293b; margin-top: 1px; }
+    .m-value.pos { color: #16a34a; }
+    .m-value.neg { color: #dc2626; }
+
+    .perf-row { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; }
+    .perf-pill { border-radius: 6px; padding: 4px 6px; text-align: center; }
+    .perf-pill.pos { background: #dcfce7; }
+    .perf-pill.neg { background: #fee2e2; }
+    .perf-pill.na  { background: #f1f5f9; }
+    .p-label { font-size: 0.6rem; color: #64748b; font-weight: 600; }
+    .p-val { font-size: 0.8rem; font-weight: 700; }
+    .p-val.pos { color: #16a34a; }
+    .p-val.neg { color: #dc2626; }
+    .p-val.na  { color: #94a3b8; font-weight: 500; }
+
+    .section { background: #fff; border-radius: 14px; padding: 18px; box-shadow: 0 1px 3px rgba(0,0,0,0.07); margin-bottom: 16px; }
+    .section-title { font-size: 0.85rem; font-weight: 700; color: #0f172a; margin-bottom: 14px; display: flex; align-items: center; gap: 6px; }
+
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+    .two-col .section { margin-bottom: 0; }
+
+    .pvp-bars { display: flex; flex-direction: column; gap: 8px; }
+    .pvp-row { display: flex; align-items: center; gap: 10px; }
+    .pvp-ticker { font-size: 0.72rem; font-weight: 700; color: #475569; width: 60px; flex-shrink: 0; }
+    .pvp-track { flex: 1; background: #f1f5f9; border-radius: 99px; height: 10px; overflow: hidden; }
+    .pvp-fill { height: 100%; border-radius: 99px; background: #3b82f6; }
+    .pvp-fill.high { background: #f97316; }
+    .pvp-fill.low  { background: #22c55e; }
+    .pvp-val { font-size: 0.72rem; font-weight: 700; color: #475569; width: 36px; text-align: right; flex-shrink: 0; }
+
+    /* Fatos Relevantes */
+    .fr-tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
+    .fr-tab {
+      padding: 5px 12px; border-radius: 99px; font-size: 0.72rem; font-weight: 700;
+      cursor: pointer; border: 1.5px solid #e2e8f0; background: #f8fafc; color: #64748b;
+      transition: all 0.15s; display: flex; align-items: center; gap: 5px;
+    }
+    .fr-tab .tab-dot { width: 6px; height: 6px; border-radius: 50%; background: #ef4444; }
+    .fr-tab.active, .fr-tab:hover { background: #1e293b; color: #fff; border-color: #1e293b; }
+    .fr-tab[data-ticker="DIRR3"].active  { background: #f59e0b; border-color: #f59e0b; }
+    .fr-tab[data-ticker="INBR32"].active { background: #22c55e; border-color: #22c55e; }
+    .fr-tab[data-ticker="HUBS"].active   { background: #8b5cf6; border-color: #8b5cf6; }
+    .fr-tab[data-ticker="BBAS3"].active  { background: #3b82f6; border-color: #3b82f6; }
+    .fr-tab[data-ticker="ENJU3"].active  { background: #ef4444; border-color: #ef4444; }
+    .fr-tab[data-ticker="HAPV3"].active  { background: #f97316; border-color: #f97316; }
+    .fr-tab.active .tab-dot { background: #fff; opacity: 0.8; }
+
+    .fr-list { display: flex; flex-direction: column; gap: 2px; }
+    .fr-item { display: flex; align-items: flex-start; gap: 10px; padding: 8px 10px; border-radius: 8px; transition: background 0.1s; }
+    .fr-item:hover { background: #f8fafc; }
+    .fr-meta { flex-shrink: 0; text-align: right; width: 72px; }
+    .fr-date { font-size: 0.68rem; color: #94a3b8; white-space: nowrap; }
+    .fr-type { display: inline-block; font-size: 0.58rem; font-weight: 700; padding: 2px 5px; border-radius: 4px; margin-top: 3px; }
+    .fr-type.FR { background: #fef3c7; color: #92400e; }
+    .fr-type.CO { background: #e0f2fe; color: #075985; }
+    .fr-desc { flex: 1; }
+    .fr-desc a { font-size: 0.82rem; color: #1e293b; font-weight: 500; text-decoration: none; line-height: 1.4; }
+    .fr-desc a:hover { color: #3b82f6; text-decoration: underline; }
+    .fr-desc .fr-source { font-size: 0.65rem; color: #94a3b8; margin-top: 2px; }
+
+    /* Clipping */
+    .clip-item { display: flex; align-items: flex-start; gap: 10px; padding: 10px; border-radius: 10px; border: 1px solid #f1f5f9; margin-bottom: 8px; transition: border-color 0.15s; }
+    .clip-item:hover { border-color: #cbd5e1; background: #fafbfc; }
+    .clip-item:last-child { margin-bottom: 0; }
+    .clip-badge { flex-shrink: 0; height: 22px; padding: 0 8px; font-size: 0.62rem; font-weight: 800; border-radius: 5px; display: flex; align-items: center; letter-spacing: 0.04em; margin-top: 2px; }
+    .clip-badge.DIRR3  { background: #fef3c7; color: #92400e; }
+    .clip-badge.INBR32 { background: #dcfce7; color: #15803d; }
+    .clip-badge.HUBS   { background: #ede9fe; color: #6d28d9; }
+    .clip-badge.BBAS3  { background: #dbeafe; color: #1d4ed8; }
+    .clip-badge.ENJU3  { background: #fee2e2; color: #b91c1c; }
+    .clip-badge.HAPV3  { background: #ffedd5; color: #c2410c; }
+    .clip-right { flex: 1; }
+    .clip-title a { font-size: 0.82rem; color: #1e293b; font-weight: 600; text-decoration: none; line-height: 1.4; }
+    .clip-title a:hover { color: #3b82f6; text-decoration: underline; }
+    .clip-meta { font-size: 0.68rem; color: #94a3b8; margin-top: 3px; display: flex; gap: 8px; }
+    .clip-summary { font-size: 0.76rem; color: #475569; margin-top: 4px; line-height: 1.45; }
+
+    .disclaimer { font-size: 0.67rem; color: #94a3b8; text-align: center; padding-top: 4px; }
+    .nd-note { font-size: 0.62rem; color: #94a3b8; margin-top: 6px; font-style: italic; }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <h1>📊 Painel de Ações</h1>
+    <p class="subtitle">Atualizado em 03/06/2026 · Fontes: Fundamentus · Status Invest · GuruFocus · CVM/ENET · SEC · MoneyTimes · InfoMoney · Seu Dinheiro</p>
+  </div>
+
+  <div class="stocks-grid" id="stocksGrid"></div>
+
+  <div class="two-col">
+    <div class="section">
+      <div class="section-title">📈 P/L — Comparativo</div>
+      <canvas id="plChart" height="200"></canvas>
+    </div>
+    <div class="section">
+      <div class="section-title">📐 P/VP — Comparativo</div>
+      <div class="pvp-bars" id="pvpBars"></div>
+    </div>
+  </div>
+
+  <!-- FATOS RELEVANTES PRIMEIRO -->
+  <div class="section">
+    <div class="section-title">
+      📋 Fatos Relevantes &amp; Comunicados — CVM/RI
+      <span style="font-size:0.65rem;font-weight:400;color:#94a3b8;margin-left:4px;">● = novo nos últimos 10 dias</span>
+    </div>
+    <div class="fr-tabs" id="frTabs"></div>
+    <div class="fr-list" id="frList"></div>
+  </div>
+
+  <!-- CLIPPING DEPOIS -->
+  <div class="section">
+    <div class="section-title">📰 Clipping — Notícias Recentes</div>
+    <div id="clipList"></div>
+  </div>
+
+  <p class="disclaimer">⚠️ Não é recomendação de investimento. Consulte fontes originais antes de tomar decisões.</p>
+
+  <script>
+    // Ações com novos FRs/COs nos últimos 10 dias (referência: 03/06/2026)
+    // ENJU3: 03/06/2026 | BBAS3: 28/05/2026
+    const hasNew = new Set(['ENJU3', 'BBAS3']);
+
+    const stocks = [
+      { ticker:'DIRR3',  company:'Direcional Engenharia', currency:'R$',  price:12.43,  priceDate:'03/06/2026', pl:7.72,   pvp:3.04,  dy:17.8, roe:39.4,  perf12m:5.61,   perf2026:-11.97, color:'col-yellow' },
+      { ticker:'INBR32', company:'Inter & Co (BDR)',       currency:'R$',  price:32.04,  priceDate:'26/05/2026', pl:10.12,  pvp:1.30,  dy:null, roe:15.5,  perf12m:-24.47, perf2026:null,   perf12mAprox:true, color:'col-green' },
+      { ticker:'HUBS',   company:'HubSpot Inc',            currency:'US$', price:236.43, priceDate:'03/06/2026', pl:125.94, pvp:10.75, dy:null, roe:null,  perf12m:null,   perf2026:-42.04, color:'col-purple' },
+      { ticker:'BBAS3',  company:'Banco do Brasil',        currency:'R$',  price:21.07,  priceDate:'27/05/2026', pl:8.39,   pvp:0.65,  dy:4.0,  roe:7.7,   perf12m:-12.08, perf2026:-3.01,  color:'col-blue' },
+      { ticker:'ENJU3',  company:'Enjoei',                 currency:'R$',  price:1.03,   priceDate:'03/06/2026', pl:null,   pvp:0.71,  dy:0,    roe:-5.9,  perf12m:-14.88, perf2026:-3.74,  plLabel:'Prejuízo', color:'col-red' },
+      { ticker:'HAPV3',  company:'Hapvida',                currency:'R$',  price:13.27,  priceDate:'20/05/2026', pl:null,   pvp:0.14,  dy:0,    roe:-0.9,  perf12m:-68.63, perf2026:-9.91,  plLabel:'Prejuízo', color:'col-orange' }
+    ];
+
+    // Clipping — datas verificadas nas páginas originais
+    const clips = [
+      { ticker:'DIRR3',  date:'Jun/2026',    source:'SpaceMoney',
+        title:'Empiricus substitui Porto Seguro por Direcional em carteira de dividendos para junho/2026',
+        url:'https://www.spacemoney.com.br/investimentos/empiricus-acoes-dividendos-junho-2026/',
+        summary:'Pressão macro abre assimetria de entrada; empresa mantém fundamentos sólidos e exposição ao programa habitacional de baixa renda.' },
+      { ticker:'DIRR3',  date:'Jun/2026',    source:'Suno / BB Investimentos',
+        title:'BB Investimentos eleva preço-alvo de DIRR3 para R$20 — potencial de +27% até o fim de 2026',
+        url:'https://www.suno.com.br/noticias/direcional-dirr3-preco-alvo-bbbi-2026-go/',
+        summary:'Lançamentos crescem 13,5% em 12 meses (R$5bi) e vendas líquidas consolidadas avançam 25%.' },
+      { ticker:'BBAS3',  date:'13/05/2026',  source:'MoneyTimes',
+        title:'Banco do Brasil corta projeção de lucro para R$18-22bi; custo do crédito sobe para R$65-70bi',
+        url:'https://www.moneytimes.com.br/pior-que-esperado-banco-do-brasil-bbas3-corta-projecoes-para-2026-veja-detalhes/',
+        summary:'Inadimplência no agronegócio piora projeções. Lucro 1T26: R$3,4bi, queda de 53% a/a. BB descarta dividendos extraordinários em 2026.' },
+      { ticker:'BBAS3',  date:'13/05/2026',  source:'InfoMoney',
+        title:'BBAS3 aprova pagamento de R$465,7 milhões em JCP referente ao 1T26',
+        url:'https://www.infomoney.com.br/mercados/banco-do-brasil-bbas3-proventos-primeiro-trimestre-2026/',
+        summary:'R$0,08157/ação. Data-base: 01/jun. Pagamento: 11/jun. Adicionalmente, JCP antecipado de R$340,7mi (2T26) também pago em 11/jun.' },
+      { ticker:'HAPV3',  date:'12/05/2026',  source:'Seu Dinheiro',
+        title:'Hapvida entrega 1T26 melhor que o esperado: lucro ajustado R$244mi, queda de 41% a/a; ações saltam',
+        url:'https://www.seudinheiro.com/2026/bolsa-dolar/hapvida-hpav3-da-um-trimestre-de-sossego-aos-investidores-com-balanco-melhor-que-o-esperado-acoes-saltam-hora-de-comprar-bdap/',
+        summary:'BTG, Itaú BBA e JP Morgan avaliam resultado como acima do consenso. Novo CEO Lucas Adib sinaliza venda de ativos não estratégicos e revisão geográfica. Recomendação: neutra.' },
+      { ticker:'HAPV3',  date:'2026',        source:'Suno',
+        title:'Fitch rebaixa rating da Hapvida e projeta pressão continuada em 2026',
+        url:'https://www.suno.com.br/noticias/fitch-rebaixa-rating-hapvida-hapv3-2026-mt/',
+        summary:'Agência cita endividamento elevado e geração de caixa pressionada como principais riscos.' },
+      { ticker:'ENJU3',  date:'24/04/2026',  source:'MoneyTimes',
+        title:'Enjoei aprova redução de capital de R$426mi; prevê restituição de R$0,20/ação após 23/jun',
+        url:'https://www.moneytimes.com.br/enjoei-enju3-aprova-reducao-de-capital-de-r-426-milhoes-e-preve-restituicao-de-r-020-por-acao/',
+        summary:'R$385mi absorvem prejuízos de 2025; R$41mi em restituição aos acionistas. Prazo de oposição de credores: encerra 23/jun/2026. Data-base: 24/jun.' },
+      { ticker:'INBR32', date:'Mai/2026',    source:'XP Investimentos',
+        title:'Inter 1T26: lucro líquido +38% a/a, 44 mi de clientes, ROE de 15,5%; qualidade de crédito piora',
+        url:'https://conteudos.xpi.com.br/acoes/relatorios/inter-co-inbr32-resultados-se-mantem-resilientes-enquanto-a-qualidade-de-credito-piora/',
+        summary:'XP mantém recomendação positiva mas aponta piora na qualidade de crédito como ponto de atenção. Preço-alvo médio dos analistas: R$57,59 (+74% upside).' },
+      { ticker:'HUBS',   date:'01/06/2026',  source:'StocksToTrade',
+        title:'HubSpot Q1 2026: receita $881mi (+23% a/a), EPS $2,73 supera consenso — ação acumula -42% YTD',
+        url:'https://stockstotrade.com/news/hubspot-inc-hubs-news-2026_06_01/',
+        summary:'Guidance FY26: receita $3,70-3,71bi e EPS $13,04-13,12, acima das estimativas. CEO apresentou no Evercore TMT Conference em 03/jun.' },
+      { ticker:'HUBS',   date:'02/06/2026',  source:'GuruFocus',
+        title:'HUBS cai 8,4% no dia 02/jun para $240,16 — GuruFocus vê ação subvalorizada (GF Score: 67)',
+        url:'https://www.gurufocus.com/news/8897356/hubspot-inc-hubs-stock-down-84-now-undervalued-gf-score-67100',
+        summary:'Após a queda, ação recuperou parcialmente nos dias seguintes, fechando em torno de $236.' },
+    ];
+
+    const frData = {
+      DIRR3: [
+        { date:'09/04/2026', type:'CO', desc:'Prévia Operacional 1T26', url:'https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&numProtocolo=1503284&descTipo=IPE&CodigoInstituicao=1', source:'CVM/ENET' },
+        { date:'10/03/2026', type:'CO', desc:'Resultado 4T25', url:'https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&numProtocolo=1487938&descTipo=IPE&CodigoInstituicao=1', source:'CVM/ENET' },
+        { date:'15/01/2026', type:'CO', desc:'Prévia Operacional 4T25', url:'https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&numProtocolo=1467743&descTipo=IPE&CodigoInstituicao=1', source:'CVM/ENET' },
+        { date:'10/12/2025', type:'FR', desc:'Distribuição de Dividendos', url:'https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&numProtocolo=1455659&descTipo=IPE&CodigoInstituicao=1', source:'CVM/ENET' },
+        { date:'01/10/2025', type:'CO', desc:'Memorando de Entendimentos Direcional e Moura Dubeux', url:'https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&numProtocolo=1428091&descTipo=IPE&CodigoInstituicao=1', source:'CVM/ENET' },
+      ],
+      BBAS3: [
+        { date:'28/05/2026', type:'CO', desc:'Relatório Anual 2025', url:'https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&numProtocolo=1528046&descTipo=IPE&CodigoInstituicao=1', source:'CVM/ENET' },
+        { date:'20/05/2026', type:'FR', desc:'JCP Antecipação 2T26', url:'https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&numProtocolo=1525224&descTipo=IPE&CodigoInstituicao=1', source:'CVM/ENET' },
+        { date:'13/05/2026', type:'FR', desc:'Remuneração Complementar aos Acionistas 1T26', url:'https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&numProtocolo=1521597&descTipo=IPE&CodigoInstituicao=1', source:'CVM/ENET' },
+        { date:'13/05/2026', type:'FR', desc:'Projeções 1T26', url:'https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&numProtocolo=1521599&descTipo=IPE&CodigoInstituicao=1', source:'CVM/ENET' },
+        { date:'23/04/2026', type:'CO', desc:'Emissão Nature Bond', url:'https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&numProtocolo=1507916&descTipo=IPE&CodigoInstituicao=1', source:'CVM/ENET' },
+      ],
+      HAPV3: [
+        { date:'04/05/2026', type:'CO', desc:'Alienação de participação acionária', url:'https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&numProtocolo=1515556&descTipo=IPE&CodigoInstituicao=1', source:'CVM/ENET' },
+        { date:'28/04/2026', type:'CO', desc:'Retirada candidato membro CA — Carlos Augusto Piani', url:'https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&numProtocolo=1510202&descTipo=IPE&CodigoInstituicao=1', source:'CVM/ENET' },
+        { date:'09/04/2026', type:'CO', desc:'Nova Administração', url:'https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&numProtocolo=1503152&descTipo=IPE&CodigoInstituicao=1', source:'CVM/ENET' },
+        { date:'27/01/2026', type:'CO', desc:'Rescisão de Contrato Vinculante — Hospital do Méier (RJ)', url:'https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&numProtocolo=1470185&descTipo=IPE&CodigoInstituicao=1', source:'CVM/ENET' },
+        { date:'22/12/2025', type:'FR', desc:'Processo Sucessório da Administração', url:'https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&numProtocolo=1460586&descTipo=IPE&CodigoInstituicao=1', source:'CVM/ENET' },
+      ],
+      ENJU3: [
+        { date:'03/06/2026', type:'CO', desc:'Pagamento Restituição e Tratamento Tributário', url:'https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&numProtocolo=1530608&descTipo=IPE&CodigoInstituicao=1', source:'CVM/ENET' },
+        { date:'01/06/2026', type:'CO', desc:'Alteração do Escriturador de Ações', url:'https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&numProtocolo=1529483&descTipo=IPE&CodigoInstituicao=1', source:'CVM/ENET' },
+        { date:'14/05/2026', type:'FR', desc:'Contratação de Novo Formador de Mercado', url:'https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&numProtocolo=1522499&descTipo=IPE&CodigoInstituicao=1', source:'CVM/ENET' },
+        { date:'11/05/2026', type:'FR', desc:'Descontinuidade das Operações do Elo7', url:'https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&numProtocolo=1519456&descTipo=IPE&CodigoInstituicao=1', source:'CVM/ENET' },
+        { date:'24/04/2026', type:'FR', desc:'Aprovação Redução de Capital', url:'https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&numProtocolo=1508744&descTipo=IPE&CodigoInstituicao=1', source:'CVM/ENET' },
+      ],
+      INBR32: [
+        { date:'Mai/2026', type:'CO', desc:'Resultados 1T26 — Lucro +38% a/a, 44 mi clientes, ROE 15,5%', url:'https://ir.inter.co/', source:'ir.inter.co' },
+        { date:'2026',    type:'CO', desc:'Página de RI — Inter & Co Investor Relations', url:'https://ir.inter.co/', source:'ir.inter.co' },
+        { date:'2026',    type:'CO', desc:'Cotação e indicadores INBR32', url:'https://statusinvest.com.br/bdrs/inbr32', source:'Status Invest' },
+      ],
+      HUBS: [
+        { date:'Mai/2026', type:'CO', desc:'Form 8-K — Resultado Q1 FY2026', url:'https://www.sec.gov/Archives/edgar/data/0001404655/000119312526211923/hubs-ex99_1.htm', source:'SEC EDGAR' },
+        { date:'Mai/2026', type:'CO', desc:'Form 10-Q — FY2026 (Q1)', url:'https://www.sec.gov/Archives/edgar/data/0001404655/000119312526212122/hubs-20260331.htm', source:'SEC EDGAR' },
+        { date:'2026',    type:'CO', desc:'Página de RI — HubSpot Investor Relations', url:'https://ir.hubspot.com/', source:'ir.hubspot.com' },
+      ],
+    };
+
+    // ── Render stock cards ──────────────────────────────────────
+    const grid = document.getElementById('stocksGrid');
+    stocks.forEach(s => {
+      const pl   = s.pl !== null ? s.pl.toFixed(2) + 'x' : (s.plLabel || '—');
+      const pvp  = s.pvp !== null ? s.pvp.toFixed(2) + 'x' : '—';
+      const dy   = s.dy !== null ? s.dy.toFixed(1) + '%' : '—';
+      const roe  = s.roe !== null ? s.roe.toFixed(1) + '%' : '—';
+      const plCls  = s.pl === null ? 'neg' : '';
+      const roeCls = (s.roe !== null && s.roe < 0) ? 'neg' : (s.roe !== null && s.roe > 0 ? 'pos' : '');
+
+      const p12Cls  = s.perf12m === null ? 'na' : (s.perf12m >= 0 ? 'pos' : 'neg');
+      const p12Txt  = s.perf12m === null ? 'N/D'
+        : (s.perf12m >= 0 ? '+' : '') + s.perf12m.toFixed(2) + '%' + (s.perf12mAprox ? '*' : '');
+
+      const p26Cls  = s.perf2026 === null ? 'na' : (s.perf2026 >= 0 ? 'pos' : 'neg');
+      const p26Txt  = s.perf2026 === null ? 'N/D'
+        : (s.perf2026 >= 0 ? '+' : '') + s.perf2026.toFixed(2) + '%';
+
+      const dotHtml = hasNew.has(s.ticker) ? '<span class="new-dot" title="Novo fato relevante nos últimos 10 dias"></span>' : '';
+
+      grid.innerHTML += `
+        <div class="card ${s.color}">
+          <div class="card-header">
+            <div>
+              <div class="ticker-row"><span class="ticker">${s.ticker}</span>${dotHtml}</div>
+              <div class="company">${s.company}</div>
+            </div>
+            <div class="price-block">
+              <div class="price">${s.currency} ${s.price.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2})}</div>
+              <div class="price-date">${s.priceDate}</div>
+            </div>
+          </div>
+          <div class="metrics">
+            <div class="metric"><div class="m-label">P/L</div><div class="m-value ${plCls}">${pl}</div></div>
+            <div class="metric"><div class="m-label">P/VP</div><div class="m-value">${pvp}</div></div>
+            <div class="metric"><div class="m-label">Div. Yield</div><div class="m-value ${s.dy > 0 ? 'pos' : ''}">${dy}</div></div>
+            <div class="metric"><div class="m-label">ROE</div><div class="m-value ${roeCls}">${roe}</div></div>
+          </div>
+          <div class="perf-row">
+            <div class="perf-pill ${p12Cls}"><div class="p-label">12 MESES</div><div class="p-val ${p12Cls}">${p12Txt}</div></div>
+            <div class="perf-pill ${p26Cls}"><div class="p-label">2026 YTD</div><div class="p-val ${p26Cls}">${p26Txt}</div></div>
+          </div>
+        </div>`;
+    });
+
+    // ── P/L Chart ───────────────────────────────────────────────
+    const plStocks  = stocks.filter(s => s.pl !== null && s.pl > 0);
+    const plPalette = ['#f59e0b','#22c55e','#8b5cf6','#3b82f6'];
+    new Chart(document.getElementById('plChart'), {
+      type: 'bar',
+      data: {
+        labels: plStocks.map(s => s.ticker),
+        datasets: [{ label:'P/L', data: plStocks.map(s => s.pl), backgroundColor: plStocks.map((_,i) => plPalette[i]+'cc'), borderColor: plStocks.map((_,i) => plPalette[i]), borderWidth:1.5, borderRadius:6 }]
+      },
+      options: {
+        responsive: true,
+        plugins: { legend:{display:false}, tooltip:{callbacks:{label: ctx => ` P/L: ${ctx.raw.toFixed(2)}x`}} },
+        scales: { y:{beginAtZero:true,grid:{color:'#f1f5f9'},ticks:{font:{size:11}}}, x:{grid:{display:false},ticks:{font:{size:12,weight:'700'}}} }
+      }
+    });
+
+    // ── P/VP Bars ───────────────────────────────────────────────
+    const pvpContainer = document.getElementById('pvpBars');
+    const maxPvp = Math.max(...stocks.map(s => s.pvp || 0));
+    stocks.forEach(s => {
+      if (s.pvp === null) return;
+      const pct = Math.min((s.pvp / maxPvp) * 100, 100);
+      const cls = s.pvp > 5 ? 'high' : (s.pvp < 1 ? 'low' : '');
+      pvpContainer.innerHTML += `
+        <div class="pvp-row">
+          <div class="pvp-ticker">${s.ticker}</div>
+          <div class="pvp-track"><div class="pvp-fill ${cls}" style="width:${pct}%"></div></div>
+          <div class="pvp-val">${s.pvp.toFixed(2)}x</div>
+        </div>`;
+    });
+    // Note for N/D
+    document.getElementById('pvpBars').innerHTML += `<p class="nd-note">* INBR32 12m: aprox. (Status Invest) · HUBS 12m: N/D · YTD HUBS: -42% · INBR32 YTD: N/D</p>`;
+
+    // ── Fatos Relevantes tabs ───────────────────────────────────
+    const tabs   = document.getElementById('frTabs');
+    const frList = document.getElementById('frList');
+    const tickers = Object.keys(frData);
+    let active   = tickers[0];
+
+    function renderFR(ticker) {
+      active = ticker;
+      tabs.querySelectorAll('.fr-tab').forEach(t => t.classList.toggle('active', t.dataset.ticker === ticker));
+      frList.innerHTML = '';
+      frData[ticker].forEach(item => {
+        frList.innerHTML += `
+          <div class="fr-item">
+            <div class="fr-meta">
+              <div class="fr-date">${item.date}</div>
+              <span class="fr-type ${item.type}">${item.type}</span>
+            </div>
+            <div class="fr-desc">
+              <a href="${item.url}" target="_blank" rel="noopener noreferrer">${item.desc} ↗</a>
+              <div class="fr-source">${item.source}</div>
+            </div>
+          </div>`;
+      });
+    }
+
+    tickers.forEach(t => {
+      const btn = document.createElement('button');
+      btn.className = 'fr-tab';
+      btn.dataset.ticker = t;
+      if (hasNew.has(t)) {
+        btn.innerHTML = `${t} <span class="tab-dot"></span>`;
+      } else {
+        btn.textContent = t;
+      }
+      btn.onclick = () => renderFR(t);
+      tabs.appendChild(btn);
+    });
+    renderFR(active);
+
+    // ── Clipping ────────────────────────────────────────────────
+    const clipContainer = document.getElementById('clipList');
+    clips.forEach(c => {
+      clipContainer.innerHTML += `
+        <div class="clip-item">
+          <span class="clip-badge ${c.ticker}">${c.ticker}</span>
+          <div class="clip-right">
+            <div class="clip-title"><a href="${c.url}" target="_blank" rel="noopener noreferrer">${c.title} ↗</a></div>
+            <div class="clip-meta"><span>${c.source}</span><span>${c.date}</span></div>
+            <div class="clip-summary">${c.summary}</div>
+          </div>
+        </div>`;
+    });
+  </script>
+</body>
+</html>
