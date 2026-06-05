@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Painel de Ações</title>
+  <title>Painel de AÃ§Ãµes</title>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.0/dist/chart.umd.js" integrity="sha384-iU8HYtnGQ8Cy4zl7gbNMOhsDTTKX02BTXptVP/vqAWIaTfM7isw76iyZCsjL2eVi" crossorigin="anonymous"></script>
   <style>
     :root { color-scheme: light; }
@@ -121,19 +121,19 @@
 <body>
 
   <div class="header">
-    <h1>📊 Painel de Ações</h1>
-    <p class="subtitle">Atualizado em 03/06/2026 · Fontes: Fundamentus · Status Invest · GuruFocus · CVM/ENET · SEC · MoneyTimes · InfoMoney · Seu Dinheiro</p>
+    <h1>ð Painel de AÃ§Ãµes</h1>
+    <p class="subtitle">Atualizado em 03/06/2026 Â· Fontes: Fundamentus Â· Status Invest Â· GuruFocus Â· CVM/ENET Â· SEC Â· MoneyTimes Â· InfoMoney Â· Seu Dinheiro</p>
   </div>
 
   <div class="stocks-grid" id="stocksGrid"></div>
 
   <div class="two-col">
     <div class="section">
-      <div class="section-title">📈 P/L — Comparativo</div>
+      <div class="section-title">ð P/L â Comparativo</div>
       <canvas id="plChart" height="200"></canvas>
     </div>
     <div class="section">
-      <div class="section-title">📐 P/VP — Comparativo</div>
+      <div class="section-title">ð P/VP â Comparativo</div>
       <div class="pvp-bars" id="pvpBars"></div>
     </div>
   </div>
@@ -141,8 +141,8 @@
   <!-- FATOS RELEVANTES PRIMEIRO -->
   <div class="section">
     <div class="section-title">
-      📋 Fatos Relevantes &amp; Comunicados — CVM/RI
-      <span style="font-size:0.65rem;font-weight:400;color:#94a3b8;margin-left:4px;">● = novo nos últimos 10 dias</span>
+      ð Fatos Relevantes &amp; Comunicados â CVM/RI
+      <span style="font-size:0.65rem;font-weight:400;color:#94a3b8;margin-left:4px;">â = novo nos Ãºltimos 10 dias</span>
     </div>
     <div class="fr-tabs" id="frTabs"></div>
     <div class="fr-list" id="frList"></div>
@@ -150,14 +150,14 @@
 
   <!-- CLIPPING DEPOIS -->
   <div class="section">
-    <div class="section-title">📰 Clipping — Notícias Recentes</div>
+    <div class="section-title">ð° Clipping â NotÃ­cias Recentes</div>
     <div id="clipList"></div>
   </div>
 
-  <p class="disclaimer">⚠️ Não é recomendação de investimento. Consulte fontes originais antes de tomar decisões.</p>
+  <p class="disclaimer">â ï¸ NÃ£o Ã© recomendaÃ§Ã£o de investimento. Consulte fontes originais antes de tomar decisÃµes.</p>
 
   <script>
-    // Ações com novos FRs/COs nos últimos 10 dias (referência: 03/06/2026)
+    // AÃ§Ãµes com novos FRs/COs nos Ãºltimos 10 dias (referÃªncia: 03/06/2026)
     // ENJU3: 03/06/2026 | BBAS3: 28/05/2026
     const hasNew = new Set(['ENJU3', 'BBAS3']);
 
@@ -166,102 +166,102 @@
       { ticker:'INBR32', company:'Inter & Co (BDR)',       currency:'R$',  price:32.04,  priceDate:'26/05/2026', pl:10.12,  pvp:1.30,  dy:null, roe:15.5,  perf12m:-24.47, perf2026:null,   perf12mAprox:true, color:'col-green' },
       { ticker:'HUBS',   company:'HubSpot Inc',            currency:'US$', price:236.43, priceDate:'03/06/2026', pl:125.94, pvp:10.75, dy:null, roe:null,  perf12m:null,   perf2026:-42.04, color:'col-purple' },
       { ticker:'BBAS3',  company:'Banco do Brasil',        currency:'R$',  price:21.07,  priceDate:'27/05/2026', pl:8.39,   pvp:0.65,  dy:4.0,  roe:7.7,   perf12m:-12.08, perf2026:-3.01,  color:'col-blue' },
-      { ticker:'ENJU3',  company:'Enjoei',                 currency:'R$',  price:1.03,   priceDate:'03/06/2026', pl:null,   pvp:0.71,  dy:0,    roe:-5.9,  perf12m:-14.88, perf2026:-3.74,  plLabel:'Prejuízo', color:'col-red' },
-      { ticker:'HAPV3',  company:'Hapvida',                currency:'R$',  price:13.27,  priceDate:'20/05/2026', pl:null,   pvp:0.14,  dy:0,    roe:-0.9,  perf12m:-68.63, perf2026:-9.91,  plLabel:'Prejuízo', color:'col-orange' }
+      { ticker:'ENJU3',  company:'Enjoei',                 currency:'R$',  price:1.03,   priceDate:'03/06/2026', pl:null,   pvp:0.71,  dy:0,    roe:-5.9,  perf12m:-14.88, perf2026:-3.74,  plLabel:'PrejuÃ­zo', color:'col-red' },
+      { ticker:'HAPV3',  company:'Hapvida',                currency:'R$',  price:13.27,  priceDate:'20/05/2026', pl:null,   pvp:0.14,  dy:0,    roe:-0.9,  perf12m:-68.63, perf2026:-9.91,  plLabel:'PrejuÃ­zo', color:'col-orange' }
     ];
 
-    // Clipping — datas verificadas nas páginas originais
+    // Clipping â datas verificadas nas pÃ¡ginas originais
     const clips = [
       { ticker:'DIRR3',  date:'Jun/2026',    source:'SpaceMoney',
         title:'Empiricus substitui Porto Seguro por Direcional em carteira de dividendos para junho/2026',
         url:'https://www.spacemoney.com.br/investimentos/empiricus-acoes-dividendos-junho-2026/',
-        summary:'Pressão macro abre assimetria de entrada; empresa mantém fundamentos sólidos e exposição ao programa habitacional de baixa renda.' },
+        summary:'PressÃ£o macro abre assimetria de entrada; empresa mantÃ©m fundamentos sÃ³lidos e exposiÃ§Ã£o ao programa habitacional de baixa renda.' },
       { ticker:'DIRR3',  date:'Jun/2026',    source:'Suno / BB Investimentos',
-        title:'BB Investimentos eleva preço-alvo de DIRR3 para R$20 — potencial de +27% até o fim de 2026',
+        title:'BB Investimentos eleva preÃ§o-alvo de DIRR3 para R$20 â potencial de +27% atÃ© o fim de 2026',
         url:'https://www.suno.com.br/noticias/direcional-dirr3-preco-alvo-bbbi-2026-go/',
-        summary:'Lançamentos crescem 13,5% em 12 meses (R$5bi) e vendas líquidas consolidadas avançam 25%.' },
+        summary:'LanÃ§amentos crescem 13,5% em 12 meses (R$5bi) e vendas lÃ­quidas consolidadas avanÃ§am 25%.' },
       { ticker:'BBAS3',  date:'13/05/2026',  source:'MoneyTimes',
-        title:'Banco do Brasil corta projeção de lucro para R$18-22bi; custo do crédito sobe para R$65-70bi',
+        title:'Banco do Brasil corta projeÃ§Ã£o de lucro para R$18-22bi; custo do crÃ©dito sobe para R$65-70bi',
         url:'https://www.moneytimes.com.br/pior-que-esperado-banco-do-brasil-bbas3-corta-projecoes-para-2026-veja-detalhes/',
-        summary:'Inadimplência no agronegócio piora projeções. Lucro 1T26: R$3,4bi, queda de 53% a/a. BB descarta dividendos extraordinários em 2026.' },
+        summary:'InadimplÃªncia no agronegÃ³cio piora projeÃ§Ãµes. Lucro 1T26: R$3,4bi, queda de 53% a/a. BB descarta dividendos extraordinÃ¡rios em 2026.' },
       { ticker:'BBAS3',  date:'13/05/2026',  source:'InfoMoney',
-        title:'BBAS3 aprova pagamento de R$465,7 milhões em JCP referente ao 1T26',
+        title:'BBAS3 aprova pagamento de R$465,7 milhÃµes em JCP referente ao 1T26',
         url:'https://www.infomoney.com.br/mercados/banco-do-brasil-bbas3-proventos-primeiro-trimestre-2026/',
-        summary:'R$0,08157/ação. Data-base: 01/jun. Pagamento: 11/jun. Adicionalmente, JCP antecipado de R$340,7mi (2T26) também pago em 11/jun.' },
+        summary:'R$0,08157/aÃ§Ã£o. Data-base: 01/jun. Pagamento: 11/jun. Adicionalmente, JCP antecipado de R$340,7mi (2T26) tambÃ©m pago em 11/jun.' },
       { ticker:'HAPV3',  date:'12/05/2026',  source:'Seu Dinheiro',
-        title:'Hapvida entrega 1T26 melhor que o esperado: lucro ajustado R$244mi, queda de 41% a/a; ações saltam',
+        title:'Hapvida entrega 1T26 melhor que o esperado: lucro ajustado R$244mi, queda de 41% a/a; aÃ§Ãµes saltam',
         url:'https://www.seudinheiro.com/2026/bolsa-dolar/hapvida-hpav3-da-um-trimestre-de-sossego-aos-investidores-com-balanco-melhor-que-o-esperado-acoes-saltam-hora-de-comprar-bdap/',
-        summary:'BTG, Itaú BBA e JP Morgan avaliam resultado como acima do consenso. Novo CEO Lucas Adib sinaliza venda de ativos não estratégicos e revisão geográfica. Recomendação: neutra.' },
+        summary:'BTG, ItaÃº BBA e JP Morgan avaliam resultado como acima do consenso. Novo CEO Lucas Adib sinaliza venda de ativos nÃ£o estratÃ©gicos e revisÃ£o geogrÃ¡fica. RecomendaÃ§Ã£o: neutra.' },
       { ticker:'HAPV3',  date:'2026',        source:'Suno',
-        title:'Fitch rebaixa rating da Hapvida e projeta pressão continuada em 2026',
+        title:'Fitch rebaixa rating da Hapvida e projeta pressÃ£o continuada em 2026',
         url:'https://www.suno.com.br/noticias/fitch-rebaixa-rating-hapvida-hapv3-2026-mt/',
-        summary:'Agência cita endividamento elevado e geração de caixa pressionada como principais riscos.' },
+        summary:'AgÃªncia cita endividamento elevado e geraÃ§Ã£o de caixa pressionada como principais riscos.' },
       { ticker:'ENJU3',  date:'24/04/2026',  source:'MoneyTimes',
-        title:'Enjoei aprova redução de capital de R$426mi; prevê restituição de R$0,20/ação após 23/jun',
+        title:'Enjoei aprova reduÃ§Ã£o de capital de R$426mi; prevÃª restituiÃ§Ã£o de R$0,20/aÃ§Ã£o apÃ³s 23/jun',
         url:'https://www.moneytimes.com.br/enjoei-enju3-aprova-reducao-de-capital-de-r-426-milhoes-e-preve-restituicao-de-r-020-por-acao/',
-        summary:'R$385mi absorvem prejuízos de 2025; R$41mi em restituição aos acionistas. Prazo de oposição de credores: encerra 23/jun/2026. Data-base: 24/jun.' },
+        summary:'R$385mi absorvem prejuÃ­zos de 2025; R$41mi em restituiÃ§Ã£o aos acionistas. Prazo de oposiÃ§Ã£o de credores: encerra 23/jun/2026. Data-base: 24/jun.' },
       { ticker:'INBR32', date:'Mai/2026',    source:'XP Investimentos',
-        title:'Inter 1T26: lucro líquido +38% a/a, 44 mi de clientes, ROE de 15,5%; qualidade de crédito piora',
+        title:'Inter 1T26: lucro lÃ­quido +38% a/a, 44 mi de clientes, ROE de 15,5%; qualidade de crÃ©dito piora',
         url:'https://conteudos.xpi.com.br/acoes/relatorios/inter-co-inbr32-resultados-se-mantem-resilientes-enquanto-a-qualidade-de-credito-piora/',
-        summary:'XP mantém recomendação positiva mas aponta piora na qualidade de crédito como ponto de atenção. Preço-alvo médio dos analistas: R$57,59 (+74% upside).' },
+        summary:'XP mantÃ©m recomendaÃ§Ã£o positiva mas aponta piora na qualidade de crÃ©dito como ponto de atenÃ§Ã£o. PreÃ§o-alvo mÃ©dio dos analistas: R$57,59 (+74% upside).' },
       { ticker:'HUBS',   date:'01/06/2026',  source:'StocksToTrade',
-        title:'HubSpot Q1 2026: receita $881mi (+23% a/a), EPS $2,73 supera consenso — ação acumula -42% YTD',
+        title:'HubSpot Q1 2026: receita $881mi (+23% a/a), EPS $2,73 supera consenso â aÃ§Ã£o acumula -42% YTD',
         url:'https://stockstotrade.com/news/hubspot-inc-hubs-news-2026_06_01/',
         summary:'Guidance FY26: receita $3,70-3,71bi e EPS $13,04-13,12, acima das estimativas. CEO apresentou no Evercore TMT Conference em 03/jun.' },
       { ticker:'HUBS',   date:'02/06/2026',  source:'GuruFocus',
-        title:'HUBS cai 8,4% no dia 02/jun para $240,16 — GuruFocus vê ação subvalorizada (GF Score: 67)',
+        title:'HUBS cai 8,4% no dia 02/jun para $240,16 â GuruFocus vÃª aÃ§Ã£o subvalorizada (GF Score: 67)',
         url:'https://www.gurufocus.com/news/8897356/hubspot-inc-hubs-stock-down-84-now-undervalued-gf-score-67100',
-        summary:'Após a queda, ação recuperou parcialmente nos dias seguintes, fechando em torno de $236.' },
+        summary:'ApÃ³s a queda, aÃ§Ã£o recuperou parcialmente nos dias seguintes, fechando em torno de $236.' },
     ];
 
     const frData = {
       DIRR3: [
-        { date:'09/04/2026', type:'CO', desc:'Prévia Operacional 1T26', url:'https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&numProtocolo=1503284&descTipo=IPE&CodigoInstituicao=1', source:'CVM/ENET' },
+        { date:'09/04/2026', type:'CO', desc:'PrÃ©via Operacional 1T26', url:'https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&numProtocolo=1503284&descTipo=IPE&CodigoInstituicao=1', source:'CVM/ENET' },
         { date:'10/03/2026', type:'CO', desc:'Resultado 4T25', url:'https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&numProtocolo=1487938&descTipo=IPE&CodigoInstituicao=1', source:'CVM/ENET' },
-        { date:'15/01/2026', type:'CO', desc:'Prévia Operacional 4T25', url:'https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&numProtocolo=1467743&descTipo=IPE&CodigoInstituicao=1', source:'CVM/ENET' },
-        { date:'10/12/2025', type:'FR', desc:'Distribuição de Dividendos', url:'https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&numProtocolo=1455659&descTipo=IPE&CodigoInstituicao=1', source:'CVM/ENET' },
+        { date:'15/01/2026', type:'CO', desc:'PrÃ©via Operacional 4T25', url:'https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&numProtocolo=1467743&descTipo=IPE&CodigoInstituicao=1', source:'CVM/ENET' },
+        { date:'10/12/2025', type:'FR', desc:'DistribuiÃ§Ã£o de Dividendos', url:'https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&numProtocolo=1455659&descTipo=IPE&CodigoInstituicao=1', source:'CVM/ENET' },
         { date:'01/10/2025', type:'CO', desc:'Memorando de Entendimentos Direcional e Moura Dubeux', url:'https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&numProtocolo=1428091&descTipo=IPE&CodigoInstituicao=1', source:'CVM/ENET' },
       ],
       BBAS3: [
-        { date:'28/05/2026', type:'CO', desc:'Relatório Anual 2025', url:'https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&numProtocolo=1528046&descTipo=IPE&CodigoInstituicao=1', source:'CVM/ENET' },
-        { date:'20/05/2026', type:'FR', desc:'JCP Antecipação 2T26', url:'https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&numProtocolo=1525224&descTipo=IPE&CodigoInstituicao=1', source:'CVM/ENET' },
-        { date:'13/05/2026', type:'FR', desc:'Remuneração Complementar aos Acionistas 1T26', url:'https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&numProtocolo=1521597&descTipo=IPE&CodigoInstituicao=1', source:'CVM/ENET' },
-        { date:'13/05/2026', type:'FR', desc:'Projeções 1T26', url:'https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&numProtocolo=1521599&descTipo=IPE&CodigoInstituicao=1', source:'CVM/ENET' },
-        { date:'23/04/2026', type:'CO', desc:'Emissão Nature Bond', url:'https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&numProtocolo=1507916&descTipo=IPE&CodigoInstituicao=1', source:'CVM/ENET' },
+        { date:'28/05/2026', type:'CO', desc:'RelatÃ³rio Anual 2025', url:'https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&numProtocolo=1528046&descTipo=IPE&CodigoInstituicao=1', source:'CVM/ENET' },
+        { date:'20/05/2026', type:'FR', desc:'JCP AntecipaÃ§Ã£o 2T26', url:'https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&numProtocolo=1525224&descTipo=IPE&CodigoInstituicao=1', source:'CVM/ENET' },
+        { date:'13/05/2026', type:'FR', desc:'RemuneraÃ§Ã£o Complementar aos Acionistas 1T26', url:'https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&numProtocolo=1521597&descTipo=IPE&CodigoInstituicao=1', source:'CVM/ENET' },
+        { date:'13/05/2026', type:'FR', desc:'ProjeÃ§Ãµes 1T26', url:'https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&numProtocolo=1521599&descTipo=IPE&CodigoInstituicao=1', source:'CVM/ENET' },
+        { date:'23/04/2026', type:'CO', desc:'EmissÃ£o Nature Bond', url:'https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&numProtocolo=1507916&descTipo=IPE&CodigoInstituicao=1', source:'CVM/ENET' },
       ],
       HAPV3: [
-        { date:'04/05/2026', type:'CO', desc:'Alienação de participação acionária', url:'https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&numProtocolo=1515556&descTipo=IPE&CodigoInstituicao=1', source:'CVM/ENET' },
-        { date:'28/04/2026', type:'CO', desc:'Retirada candidato membro CA — Carlos Augusto Piani', url:'https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&numProtocolo=1510202&descTipo=IPE&CodigoInstituicao=1', source:'CVM/ENET' },
-        { date:'09/04/2026', type:'CO', desc:'Nova Administração', url:'https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&numProtocolo=1503152&descTipo=IPE&CodigoInstituicao=1', source:'CVM/ENET' },
-        { date:'27/01/2026', type:'CO', desc:'Rescisão de Contrato Vinculante — Hospital do Méier (RJ)', url:'https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&numProtocolo=1470185&descTipo=IPE&CodigoInstituicao=1', source:'CVM/ENET' },
-        { date:'22/12/2025', type:'FR', desc:'Processo Sucessório da Administração', url:'https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&numProtocolo=1460586&descTipo=IPE&CodigoInstituicao=1', source:'CVM/ENET' },
+        { date:'04/05/2026', type:'CO', desc:'AlienaÃ§Ã£o de participaÃ§Ã£o acionÃ¡ria', url:'https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&numProtocolo=1515556&descTipo=IPE&CodigoInstituicao=1', source:'CVM/ENET' },
+        { date:'28/04/2026', type:'CO', desc:'Retirada candidato membro CA â Carlos Augusto Piani', url:'https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&numProtocolo=1510202&descTipo=IPE&CodigoInstituicao=1', source:'CVM/ENET' },
+        { date:'09/04/2026', type:'CO', desc:'Nova AdministraÃ§Ã£o', url:'https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&numProtocolo=1503152&descTipo=IPE&CodigoInstituicao=1', source:'CVM/ENET' },
+        { date:'27/01/2026', type:'CO', desc:'RescisÃ£o de Contrato Vinculante â Hospital do MÃ©ier (RJ)', url:'https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&numProtocolo=1470185&descTipo=IPE&CodigoInstituicao=1', source:'CVM/ENET' },
+        { date:'22/12/2025', type:'FR', desc:'Processo SucessÃ³rio da AdministraÃ§Ã£o', url:'https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&numProtocolo=1460586&descTipo=IPE&CodigoInstituicao=1', source:'CVM/ENET' },
       ],
       ENJU3: [
-        { date:'03/06/2026', type:'CO', desc:'Pagamento Restituição e Tratamento Tributário', url:'https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&numProtocolo=1530608&descTipo=IPE&CodigoInstituicao=1', source:'CVM/ENET' },
-        { date:'01/06/2026', type:'CO', desc:'Alteração do Escriturador de Ações', url:'https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&numProtocolo=1529483&descTipo=IPE&CodigoInstituicao=1', source:'CVM/ENET' },
-        { date:'14/05/2026', type:'FR', desc:'Contratação de Novo Formador de Mercado', url:'https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&numProtocolo=1522499&descTipo=IPE&CodigoInstituicao=1', source:'CVM/ENET' },
-        { date:'11/05/2026', type:'FR', desc:'Descontinuidade das Operações do Elo7', url:'https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&numProtocolo=1519456&descTipo=IPE&CodigoInstituicao=1', source:'CVM/ENET' },
-        { date:'24/04/2026', type:'FR', desc:'Aprovação Redução de Capital', url:'https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&numProtocolo=1508744&descTipo=IPE&CodigoInstituicao=1', source:'CVM/ENET' },
+        { date:'03/06/2026', type:'CO', desc:'Pagamento RestituiÃ§Ã£o e Tratamento TributÃ¡rio', url:'https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&numProtocolo=1530608&descTipo=IPE&CodigoInstituicao=1', source:'CVM/ENET' },
+        { date:'01/06/2026', type:'CO', desc:'AlteraÃ§Ã£o do Escriturador de AÃ§Ãµes', url:'https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&numProtocolo=1529483&descTipo=IPE&CodigoInstituicao=1', source:'CVM/ENET' },
+        { date:'14/05/2026', type:'FR', desc:'ContrataÃ§Ã£o de Novo Formador de Mercado', url:'https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&numProtocolo=1522499&descTipo=IPE&CodigoInstituicao=1', source:'CVM/ENET' },
+        { date:'11/05/2026', type:'FR', desc:'Descontinuidade das OperaÃ§Ãµes do Elo7', url:'https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&numProtocolo=1519456&descTipo=IPE&CodigoInstituicao=1', source:'CVM/ENET' },
+        { date:'24/04/2026', type:'FR', desc:'AprovaÃ§Ã£o ReduÃ§Ã£o de Capital', url:'https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&numProtocolo=1508744&descTipo=IPE&CodigoInstituicao=1', source:'CVM/ENET' },
       ],
       INBR32: [
-        { date:'Mai/2026', type:'CO', desc:'Resultados 1T26 — Lucro +38% a/a, 44 mi clientes, ROE 15,5%', url:'https://ir.inter.co/', source:'ir.inter.co' },
-        { date:'2026',    type:'CO', desc:'Página de RI — Inter & Co Investor Relations', url:'https://ir.inter.co/', source:'ir.inter.co' },
-        { date:'2026',    type:'CO', desc:'Cotação e indicadores INBR32', url:'https://statusinvest.com.br/bdrs/inbr32', source:'Status Invest' },
+        { date:'Mai/2026', type:'CO', desc:'Resultados 1T26 â Lucro +38% a/a, 44 mi clientes, ROE 15,5%', url:'https://ir.inter.co/', source:'ir.inter.co' },
+        { date:'2026',    type:'CO', desc:'PÃ¡gina de RI â Inter & Co Investor Relations', url:'https://ir.inter.co/', source:'ir.inter.co' },
+        { date:'2026',    type:'CO', desc:'CotaÃ§Ã£o e indicadores INBR32', url:'https://statusinvest.com.br/bdrs/inbr32', source:'Status Invest' },
       ],
       HUBS: [
-        { date:'Mai/2026', type:'CO', desc:'Form 8-K — Resultado Q1 FY2026', url:'https://www.sec.gov/Archives/edgar/data/0001404655/000119312526211923/hubs-ex99_1.htm', source:'SEC EDGAR' },
-        { date:'Mai/2026', type:'CO', desc:'Form 10-Q — FY2026 (Q1)', url:'https://www.sec.gov/Archives/edgar/data/0001404655/000119312526212122/hubs-20260331.htm', source:'SEC EDGAR' },
-        { date:'2026',    type:'CO', desc:'Página de RI — HubSpot Investor Relations', url:'https://ir.hubspot.com/', source:'ir.hubspot.com' },
+        { date:'Mai/2026', type:'CO', desc:'Form 8-K â Resultado Q1 FY2026', url:'https://www.sec.gov/Archives/edgar/data/0001404655/000119312526211923/hubs-ex99_1.htm', source:'SEC EDGAR' },
+        { date:'Mai/2026', type:'CO', desc:'Form 10-Q â FY2026 (Q1)', url:'https://www.sec.gov/Archives/edgar/data/0001404655/000119312526212122/hubs-20260331.htm', source:'SEC EDGAR' },
+        { date:'2026',    type:'CO', desc:'PÃ¡gina de RI â HubSpot Investor Relations', url:'https://ir.hubspot.com/', source:'ir.hubspot.com' },
       ],
     };
 
-    // ── Render stock cards ──────────────────────────────────────
+    // ââ Render stock cards ââââââââââââââââââââââââââââââââââââââ
     const grid = document.getElementById('stocksGrid');
     stocks.forEach(s => {
-      const pl   = s.pl !== null ? s.pl.toFixed(2) + 'x' : (s.plLabel || '—');
-      const pvp  = s.pvp !== null ? s.pvp.toFixed(2) + 'x' : '—';
-      const dy   = s.dy !== null ? s.dy.toFixed(1) + '%' : '—';
-      const roe  = s.roe !== null ? s.roe.toFixed(1) + '%' : '—';
+      const pl   = s.pl !== null ? s.pl.toFixed(2) + 'x' : (s.plLabel || 'â');
+      const pvp  = s.pvp !== null ? s.pvp.toFixed(2) + 'x' : 'â';
+      const dy   = s.dy !== null ? s.dy.toFixed(1) + '%' : 'â';
+      const roe  = s.roe !== null ? s.roe.toFixed(1) + '%' : 'â';
       const plCls  = s.pl === null ? 'neg' : '';
       const roeCls = (s.roe !== null && s.roe < 0) ? 'neg' : (s.roe !== null && s.roe > 0 ? 'pos' : '');
 
@@ -273,7 +273,7 @@
       const p26Txt  = s.perf2026 === null ? 'N/D'
         : (s.perf2026 >= 0 ? '+' : '') + s.perf2026.toFixed(2) + '%';
 
-      const dotHtml = hasNew.has(s.ticker) ? '<span class="new-dot" title="Novo fato relevante nos últimos 10 dias"></span>' : '';
+      const dotHtml = hasNew.has(s.ticker) ? '<span class="new-dot" title="Novo fato relevante nos Ãºltimos 10 dias"></span>' : '';
 
       grid.innerHTML += `
         <div class="card ${s.color}">
@@ -300,7 +300,7 @@
         </div>`;
     });
 
-    // ── P/L Chart ───────────────────────────────────────────────
+    // ââ P/L Chart âââââââââââââââââââââââââââââââââââââââââââââââ
     const plStocks  = stocks.filter(s => s.pl !== null && s.pl > 0);
     const plPalette = ['#f59e0b','#22c55e','#8b5cf6','#3b82f6'];
     new Chart(document.getElementById('plChart'), {
@@ -316,7 +316,7 @@
       }
     });
 
-    // ── P/VP Bars ───────────────────────────────────────────────
+    // ââ P/VP Bars âââââââââââââââââââââââââââââââââââââââââââââââ
     const pvpContainer = document.getElementById('pvpBars');
     const maxPvp = Math.max(...stocks.map(s => s.pvp || 0));
     stocks.forEach(s => {
@@ -331,9 +331,9 @@
         </div>`;
     });
     // Note for N/D
-    document.getElementById('pvpBars').innerHTML += `<p class="nd-note">* INBR32 12m: aprox. (Status Invest) · HUBS 12m: N/D · YTD HUBS: -42% · INBR32 YTD: N/D</p>`;
+    document.getElementById('pvpBars').innerHTML += `<p class="nd-note">* INBR32 12m: aprox. (Status Invest) Â· HUBS 12m: N/D Â· YTD HUBS: -42% Â· INBR32 YTD: N/D</p>`;
 
-    // ── Fatos Relevantes tabs ───────────────────────────────────
+    // ââ Fatos Relevantes tabs âââââââââââââââââââââââââââââââââââ
     const tabs   = document.getElementById('frTabs');
     const frList = document.getElementById('frList');
     const tickers = Object.keys(frData);
@@ -351,7 +351,7 @@
               <span class="fr-type ${item.type}">${item.type}</span>
             </div>
             <div class="fr-desc">
-              <a href="${item.url}" target="_blank" rel="noopener noreferrer">${item.desc} ↗</a>
+              <a href="${item.url}" target="_blank" rel="noopener noreferrer">${item.desc} â</a>
               <div class="fr-source">${item.source}</div>
             </div>
           </div>`;
@@ -372,14 +372,14 @@
     });
     renderFR(active);
 
-    // ── Clipping ────────────────────────────────────────────────
+    // ââ Clipping ââââââââââââââââââââââââââââââââââââââââââââââââ
     const clipContainer = document.getElementById('clipList');
     clips.forEach(c => {
       clipContainer.innerHTML += `
         <div class="clip-item">
           <span class="clip-badge ${c.ticker}">${c.ticker}</span>
           <div class="clip-right">
-            <div class="clip-title"><a href="${c.url}" target="_blank" rel="noopener noreferrer">${c.title} ↗</a></div>
+            <div class="clip-title"><a href="${c.url}" target="_blank" rel="noopener noreferrer">${c.title} â</a></div>
             <div class="clip-meta"><span>${c.source}</span><span>${c.date}</span></div>
             <div class="clip-summary">${c.summary}</div>
           </div>
