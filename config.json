@@ -1,0 +1,10 @@
+{
+  "stocks": [
+    {"ticker": "DIRR3",  "company": "Direcional",      "currency": "BRL", "source": "fundamentus"},
+    {"ticker": "INBR32", "company": "Inter&Co (BDR)",  "currency": "BRL", "source": "preserve"},
+    {"ticker": "HUBS",   "company": "HubSpot",         "currency": "USD", "source": "preserve"},
+    {"ticker": "BBAS3",  "company": "Banco do Brasil", "currency": "BRL", "source": "fundamentus"},
+    {"ticker": "ENJU3",  "company": "Enjoei",          "currency": "BRL", "source": "fundamentus"},
+    {"ticker": "HAPV3",  "company": "Hapvida",         "currency": "BRL", "source": "fundamentus"}
+  ]
+}
