@@ -1,18 +1,18 @@
 {
-  "lastUpdated": "07/06/2026 às 11:00 (Brasília)",
+  "lastUpdated": "08/06/2026 às 09:22 (Brasília)",
   "stocks": [
     {
       "ticker": "DIRR3",
       "company": "Direcional",
       "currency": "BRL",
-      "price": "12,43",
-      "priceDate": "03/06/2026",
-      "pl": "7,72x",
-      "pvp": "3,04x",
-      "dy": "17,8%",
-      "roe": "39,4%",
-      "p12m": 5.61,
-      "pYtd": -11.97,
+      "price": "N/D",
+      "priceDate": "N/D",
+      "pl": "N/D",
+      "pvp": "N/D",
+      "dy": "N/D",
+      "roe": "N/D",
+      "p12m": null,
+      "pYtd": null,
       "hasNew": false
     },
     {
@@ -47,55 +47,49 @@
       "ticker": "BBAS3",
       "company": "Banco do Brasil",
       "currency": "BRL",
-      "price": "21,07",
-      "priceDate": "27/05/2026",
-      "pl": "8,39x",
-      "pvp": "0,65x",
-      "dy": "4,0%",
-      "roe": "7,7%",
-      "p12m": -12.08,
-      "pYtd": -3.01,
-      "hasNew": true
+      "price": "N/D",
+      "priceDate": "N/D",
+      "pl": "N/D",
+      "pvp": "N/D",
+      "dy": "N/D",
+      "roe": "N/D",
+      "p12m": null,
+      "pYtd": null,
+      "hasNew": false
     },
     {
       "ticker": "ENJU3",
       "company": "Enjoei",
       "currency": "BRL",
-      "price": "1,03",
-      "priceDate": "03/06/2026",
-      "pl": "Prejuízo",
-      "pvp": "0,71x",
-      "dy": "0%",
-      "roe": "-5,9%",
-      "p12m": -14.88,
-      "pYtd": -3.74,
-      "hasNew": true
+      "price": "N/D",
+      "priceDate": "N/D",
+      "pl": "N/D",
+      "pvp": "N/D",
+      "dy": "N/D",
+      "roe": "N/D",
+      "p12m": null,
+      "pYtd": null,
+      "hasNew": false
     },
     {
       "ticker": "HAPV3",
       "company": "Hapvida",
       "currency": "BRL",
-      "price": "13,27",
-      "priceDate": "20/05/2026",
-      "pl": "Prejuízo",
-      "pvp": "0,14x",
-      "dy": "0%",
-      "roe": "-0,9%",
-      "p12m": -68.63,
-      "pYtd": -9.91,
+      "price": "N/D",
+      "priceDate": "N/D",
+      "pl": "N/D",
+      "pvp": "N/D",
+      "dy": "N/D",
+      "roe": "N/D",
+      "p12m": null,
+      "pYtd": null,
       "hasNew": false
     }
   ],
   "fatos": {
     "DIRR3": {
       "type": "cvm",
-      "items": [
-        {"date": "09/04/2026", "badge": "CO", "label": "Prévia Operacional 1T26", "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&numProtocolo=1503284&descTipo=IPE&CodigoInstituicao=1"},
-        {"date": "10/03/2026", "badge": "CO", "label": "Resultado 4T25", "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&numProtocolo=1487938&descTipo=IPE&CodigoInstituicao=1"},
-        {"date": "15/01/2026", "badge": "CO", "label": "Prévia Operacional 4T25", "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&numProtocolo=1467743&descTipo=IPE&CodigoInstituicao=1"},
-        {"date": "10/12/2025", "badge": "FR", "label": "Distribuição de Dividendos", "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&numProtocolo=1455659&descTipo=IPE&CodigoInstituicao=1"},
-        {"date": "13/11/2025", "badge": "CO", "label": "Apresentação Institucional 3T25", "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&numProtocolo=1444477&descTipo=IPE&CodigoInstituicao=1"}
-      ]
+      "items": []
     },
     "INBR32": {
       "type": "ir",
@@ -109,33 +103,15 @@
     },
     "BBAS3": {
       "type": "cvm",
-      "items": [
-        {"date": "28/05/2026", "badge": "CO", "label": "Comunicado ao Mercado - Relatório Anual 2025", "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&numProtocolo=1528046&descTipo=IPE&CodigoInstituicao=1"},
-        {"date": "20/05/2026", "badge": "FR", "label": "JCP Antecipação 2T26", "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&numProtocolo=1525224&descTipo=IPE&CodigoInstituicao=1"},
-        {"date": "13/05/2026", "badge": "FR", "label": "Remuneração Complementar aos Acionistas 1T26", "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&numProtocolo=1521597&descTipo=IPE&CodigoInstituicao=1"},
-        {"date": "13/05/2026", "badge": "FR", "label": "Projeções 1T26", "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&numProtocolo=1521599&descTipo=IPE&CodigoInstituicao=1"},
-        {"date": "12/05/2026", "badge": "CO", "label": "Eleição de Administrador", "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&numProtocolo=1520990&descTipo=IPE&CodigoInstituicao=1"}
-      ]
+      "items": []
     },
     "ENJU3": {
       "type": "cvm",
-      "items": [
-        {"date": "03/06/2026", "badge": "CO", "label": "Pagamento Restituição e Tratamento Tributário", "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&numProtocolo=1530608&descTipo=IPE&CodigoInstituicao=1"},
-        {"date": "01/06/2026", "badge": "CO", "label": "Alteração do Escriturador de Ações", "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&numProtocolo=1529483&descTipo=IPE&CodigoInstituicao=1"},
-        {"date": "14/05/2026", "badge": "FR", "label": "Contratação de Novo Formador de Mercado", "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&numProtocolo=1522499&descTipo=IPE&CodigoInstituicao=1"},
-        {"date": "11/05/2026", "badge": "FR", "label": "Descontinuidade das Operações do Elo7", "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&numProtocolo=1519456&descTipo=IPE&CodigoInstituicao=1"},
-        {"date": "24/04/2026", "badge": "FR", "label": "Aprovação Redução de Capital", "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&numProtocolo=1508744&descTipo=IPE&CodigoInstituicao=1"}
-      ]
+      "items": []
     },
     "HAPV3": {
       "type": "cvm",
-      "items": [
-        {"date": "04/05/2026", "badge": "CO", "label": "Alienação de participação acionária", "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&numProtocolo=1515556&descTipo=IPE&CodigoInstituicao=1"},
-        {"date": "28/04/2026", "badge": "CO", "label": "Retirada candidato membro CA - Carlos Augusto Piani", "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&numProtocolo=1510202&descTipo=IPE&CodigoInstituicao=1"},
-        {"date": "09/04/2026", "badge": "CO", "label": "Nova Administração", "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&numProtocolo=1503152&descTipo=IPE&CodigoInstituicao=1"},
-        {"date": "06/04/2026", "badge": "CO", "label": "Carta - Jorge Pinheiro", "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&numProtocolo=1501656&descTipo=IPE&CodigoInstituicao=1"},
-        {"date": "02/02/2026", "badge": "CO", "label": "Entrega de Imóvel Não Operacional", "url": "https://www.rad.cvm.gov.br/ENET/frmDownloadDocumento.aspx?Tela=ext&numProtocolo=1472151&descTipo=IPE&CodigoInstituicao=1"}
-      ]
+      "items": []
     }
   },
   "clipping": []
