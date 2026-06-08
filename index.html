@@ -1,372 +1,306 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Painel de Ações | Eduardo</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
-<style>
-  :root {
-    --bg: #0f1117; --card: #1a1d27; --border: #2a2d3a;
-    --text: #e2e8f0; --muted: #8892a4; --green: #22c55e;
-    --red: #ef4444; --yellow: #f59e0b; --blue: #3b82f6;
-    --accent: #6366f1;
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', system-ui, sans-serif; min-height: 100vh; }
-  header { background: var(--card); border-bottom: 1px solid var(--border); padding: 1rem 2rem; display: flex; align-items: center; gap: 1rem; justify-content: space-between; }
-  header h1 { font-size: 1.2rem; font-weight: 600; letter-spacing: 0.05em; }
-  .ts { font-size: 0.75rem; color: var(--muted); }
-  main { max-width: 1300px; margin: 0 auto; padding: 1.5rem; }
-  .section-title { font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); margin: 2rem 0 1rem; border-left: 3px solid var(--accent); padding-left: 0.75rem; }
-  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 1rem; }
-  .card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 1rem 1.2rem; transition: border-color 0.2s; }
-  .card:hover { border-color: var(--accent); }
-  .card-header { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.2rem; }
-  .ticker { font-size: 1.1rem; font-weight: 700; letter-spacing: 0.05em; }
-  .company { font-size: 0.72rem; color: var(--muted); }
-  .dot-new { width: 9px; height: 9px; background: var(--red); border-radius: 50%; flex-shrink: 0; animation: pulse 1.5s infinite; }
-  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.35} }
-  .cotacao-row { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 0.1rem; }
-  .cotacao { font-size: 1.35rem; font-weight: 700; }
-  .data-cot { font-size: 0.7rem; color: var(--muted); margin-bottom: 0.75rem; }
-  .metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 0.45rem 0.8rem; }
-  .metric-label { font-size: 0.67rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
-  .metric-value { font-size: 0.92rem; font-weight: 600; }
-  .pos { color: var(--green); } .neg { color: var(--red); } .neu { color: var(--muted); }
-  .ast { font-size: 0.7rem; color: var(--yellow); vertical-align: super; }
-  .chart-wrap { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 1.2rem; }
-  .chart-wrap canvas { max-height: 240px; }
-  .tabs-nav { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 1rem; }
-  .tab-btn { background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: 0.3rem 0.75rem; font-size: 0.8rem; cursor: pointer; color: var(--muted); display: flex; align-items: center; gap: 0.35rem; transition: all 0.15s; }
-  .tab-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
-  .tab-content { display: none; }
-  .tab-content.active { display: block; }
-  .fr-list { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
-  .fr-item { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 0.75rem 1rem; }
-  .fr-item a { color: var(--blue); text-decoration: none; font-size: 0.85rem; font-weight: 500; }
-  .fr-item a:hover { text-decoration: underline; }
-  .fr-meta { font-size: 0.72rem; color: var(--muted); margin-top: 0.25rem; }
-  .fr-type { display: inline-block; padding: 0.1rem 0.4rem; border-radius: 4px; font-size: 0.68rem; font-weight: 600; text-transform: uppercase; margin-right: 0.4rem; }
-  .fr-type.FR { background: #7c3aed22; color: #a78bfa; border: 1px solid #7c3aed44; }
-  .fr-type.CO { background: #0369a122; color: #38bdf8; border: 1px solid #0369a144; }
-  .news-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 0.75rem; }
-  .news-card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 0.9rem 1rem; }
-  .news-ticker { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; color: var(--accent); margin-bottom: 0.3rem; }
-  .news-title { font-size: 0.87rem; font-weight: 500; line-height: 1.4; margin-bottom: 0.4rem; }
-  .news-title a { color: var(--text); text-decoration: none; }
-  .news-title a:hover { color: var(--blue); }
-  .news-date { font-size: 0.7rem; color: var(--muted); }
-  .note { font-size: 0.72rem; color: var(--muted); margin-top: 1rem; }
-  footer { text-align: center; padding: 2rem; font-size: 0.72rem; color: var(--muted); border-top: 1px solid var(--border); margin-top: 2rem; }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel de Ações | Eduardo</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #0f172a; color: #e2e8f0; font-family: 'Segoe UI', system-ui, sans-serif; min-height: 100vh; }
+    .container { max-width: 1400px; margin: 0 auto; padding: 24px 16px; }
+
+    /* Header */
+    .header { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 28px; padding-bottom: 16px; border-bottom: 1px solid #1e293b; }
+    .header h1 { font-size: 1.5rem; font-weight: 700; color: #f8fafc; letter-spacing: -0.02em; }
+    .timestamp { font-size: 0.8rem; color: #64748b; background: #1e293b; padding: 6px 12px; border-radius: 6px; }
+
+    /* Cards */
+    .cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 14px; margin-bottom: 28px; }
+    .card { background: #1e293b; border-radius: 12px; padding: 16px; border: 1px solid #334155; position: relative; transition: border-color .2s; }
+    .card:hover { border-color: #475569; }
+    .card-head { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 10px; }
+    .ticker { font-size: 1.1rem; font-weight: 700; color: #f1f5f9; display: flex; align-items: center; gap: 6px; }
+    .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #ef4444; flex-shrink: 0; }
+    .company { font-size: 0.7rem; color: #64748b; text-align: right; max-width: 90px; line-height: 1.3; }
+    .currency-badge { font-size: 0.65rem; background: #0f172a; border: 1px solid #334155; color: #94a3b8; padding: 2px 6px; border-radius: 4px; font-weight: 600; }
+    .price { font-size: 1.6rem; font-weight: 800; color: #f8fafc; margin-bottom: 2px; }
+    .price-date { font-size: 0.7rem; color: #64748b; margin-bottom: 12px; }
+    .metrics { width: 100%; border-collapse: collapse; margin-bottom: 12px; }
+    .metrics td { padding: 3px 0; font-size: 0.78rem; }
+    .metrics td:first-child { color: #94a3b8; }
+    .metrics td:last-child { text-align: right; color: #e2e8f0; font-weight: 500; }
+    .perf-row { display: flex; gap: 8px; justify-content: space-between; }
+    .perf-row span { font-size: 0.75rem; font-weight: 600; padding: 3px 8px; border-radius: 4px; }
+    .pos { background: rgba(34,197,94,.15); color: #4ade80; }
+    .neg { background: rgba(239,68,68,.15); color: #f87171; }
+    .neu { background: #1e293b; color: #64748b; }
+
+    /* Chart */
+    .section { background: #1e293b; border-radius: 12px; padding: 20px; margin-bottom: 20px; border: 1px solid #334155; }
+    .section h2 { font-size: 0.95rem; font-weight: 600; color: #94a3b8; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 16px; }
+    .chart-wrap { max-height: 280px; }
+
+    /* Fatos Relevantes */
+    .tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
+    .tab { background: #0f172a; border: 1px solid #334155; color: #94a3b8; font-size: 0.8rem; font-weight: 600; padding: 6px 14px; border-radius: 6px; cursor: pointer; transition: all .15s; display: flex; align-items: center; gap: 5px; }
+    .tab:hover { border-color: #475569; color: #e2e8f0; }
+    .tab.active { background: #3b82f6; border-color: #3b82f6; color: #fff; }
+    .tab.active .dot { background: #fff; }
+    .fr-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .fr-list li { display: flex; align-items: flex-start; gap: 8px; padding: 10px 12px; background: #0f172a; border-radius: 8px; border: 1px solid #1e293b; }
+    .fr-date { font-size: 0.72rem; color: #64748b; white-space: nowrap; min-width: 72px; padding-top: 1px; }
+    .fr-badge { font-size: 0.65rem; font-weight: 700; padding: 2px 6px; border-radius: 4px; white-space: nowrap; }
+    .fr-badge.fr { background: rgba(59,130,246,.2); color: #60a5fa; }
+    .fr-badge.co { background: rgba(168,85,247,.2); color: #c084fc; }
+    .fr-list a { color: #93c5fd; text-decoration: none; font-size: 0.82rem; line-height: 1.4; }
+    .fr-list a:hover { color: #bfdbfe; text-decoration: underline; }
+    .fr-ir { color: #94a3b8; font-size: 0.85rem; }
+    .fr-ir a { color: #60a5fa; }
+
+    /* Clipping */
+    .clip-item { padding: 12px 14px; background: #0f172a; border-radius: 8px; border: 1px solid #1e293b; margin-bottom: 8px; }
+    .clip-item:last-child { margin-bottom: 0; }
+    .clip-meta { display: flex; gap: 8px; align-items: center; margin-bottom: 4px; flex-wrap: wrap; }
+    .clip-ticker { font-size: 0.72rem; font-weight: 700; background: #1e293b; padding: 2px 8px; border-radius: 4px; color: #94a3b8; }
+    .clip-date { font-size: 0.72rem; color: #64748b; }
+    .clip-source { font-size: 0.72rem; color: #475569; }
+    .clip-item a { color: #93c5fd; text-decoration: none; font-size: 0.85rem; line-height: 1.4; }
+    .clip-item a:hover { color: #bfdbfe; text-decoration: underline; }
+    .clip-empty { color: #475569; font-size: 0.85rem; text-align: center; padding: 20px; }
+
+    /* Footer */
+    footer { text-align: center; color: #334155; font-size: 0.72rem; padding: 20px 0 8px; border-top: 1px solid #1e293b; margin-top: 8px; }
+
+    /* Loading state */
+    .loading { text-align: center; padding: 60px 20px; color: #475569; }
+    .loading p { font-size: 0.9rem; margin-top: 12px; }
+    .error-msg { color: #f87171; font-size: 0.85rem; text-align: center; padding: 20px; }
+
+    @media (max-width: 600px) {
+      .cards-grid { grid-template-columns: repeat(2, 1fr); }
+      .header h1 { font-size: 1.2rem; }
+    }
+  </style>
 </head>
 <body>
-<header>
-  <h1>📊 Painel de Ações | Eduardo</h1>
-  <span class="ts">Atualizado em 07/06/2026 às 10:53 (Brasília)</span>
-</header>
-<main>
-  <div class="section-title">Indicadores Fundamentalistas</div>
-  <div class="cards">
+<div class="container">
+  <header class="header">
+    <h1>📊 Painel de Ações</h1>
+    <span class="timestamp" id="timestamp">Carregando...</span>
+  </header>
 
-    <!-- DIRR3 -->
-    <div class="card">
-      <div class="card-header"><span class="ticker">DIRR3</span></div>
-      <div class="company">Direcional Engenharia</div>
-      <div class="cotacao-row"><span class="cotacao">R$ 12,43</span></div>
-      <div class="data-cot">03/06/2026 · B3 · Fundamentus</div>
-      <div class="metrics">
-        <div><div class="metric-label">P/L</div><div class="metric-value">7,72x</div></div>
-        <div><div class="metric-label">P/VP</div><div class="metric-value">3,04x</div></div>
-        <div><div class="metric-label">Div. Yield</div><div class="metric-value pos">17,8%</div></div>
-        <div><div class="metric-label">ROE</div><div class="metric-value pos">39,4%</div></div>
-        <div><div class="metric-label">Var. 12m</div><div class="metric-value pos">+5,61%</div></div>
-        <div><div class="metric-label">YTD 2026</div><div class="metric-value neg">−11,97%</div></div>
-      </div>
-    </div>
-
-    <!-- INBR32 -->
-    <div class="card">
-      <div class="card-header"><span class="ticker">INBR32</span></div>
-      <div class="company">Inter & Co (BDR)</div>
-      <div class="cotacao-row"><span class="cotacao">R$ 45,97</span></div>
-      <div class="data-cot">06/06/2026 · B3 · Status Invest</div>
-      <div class="metrics">
-        <div><div class="metric-label">P/L <span class="ast">*</span></div><div class="metric-value">~9x</div></div>
-        <div><div class="metric-label">P/VP <span class="ast">*</span></div><div class="metric-value">~1,4x</div></div>
-        <div><div class="metric-label">Div. Yield</div><div class="metric-value">1,01%</div></div>
-        <div><div class="metric-label">ROE</div><div class="metric-value pos">15,5%</div></div>
-        <div><div class="metric-label">Var. 12m</div><div class="metric-value pos">+78,73%</div></div>
-        <div><div class="metric-label">YTD 2026</div><div class="metric-value neu">N/D</div></div>
-      </div>
-    </div>
-
-    <!-- HUBS -->
-    <div class="card">
-      <div class="card-header"><span class="ticker">HUBS</span></div>
-      <div class="company">HubSpot · NYSE</div>
-      <div class="cotacao-row"><span class="cotacao">US$ 212,64</span></div>
-      <div class="data-cot">05/06/2026 · NYSE</div>
-      <div class="metrics">
-        <div><div class="metric-label">P/E <span class="ast">*</span></div><div class="metric-value">~103x</div></div>
-        <div><div class="metric-label">P/VP <span class="ast">*</span></div><div class="metric-value">~10,7x</div></div>
-        <div><div class="metric-label">Div. Yield</div><div class="metric-value neu">N/D</div></div>
-        <div><div class="metric-label">ROE <span class="ast">*</span></div><div class="metric-value">~11%</div></div>
-        <div><div class="metric-label">Var. 12m</div><div class="metric-value neu">N/D</div></div>
-        <div><div class="metric-label">YTD 2026</div><div class="metric-value neg">−44,57%</div></div>
-      </div>
-    </div>
-
-    <!-- BBAS3 -->
-    <div class="card">
-      <div class="card-header">
-        <span class="ticker">BBAS3</span>
-        <span class="dot-new" title="Fato Relevante nos últimos 10 dias"></span>
-      </div>
-      <div class="company">Banco do Brasil</div>
-      <div class="cotacao-row"><span class="cotacao">R$ 21,07</span></div>
-      <div class="data-cot">27/05/2026 · B3 · Fundamentus</div>
-      <div class="metrics">
-        <div><div class="metric-label">P/L</div><div class="metric-value">8,39x</div></div>
-        <div><div class="metric-label">P/VP</div><div class="metric-value">0,65x</div></div>
-        <div><div class="metric-label">Div. Yield</div><div class="metric-value pos">4,0%</div></div>
-        <div><div class="metric-label">ROE</div><div class="metric-value">7,7%</div></div>
-        <div><div class="metric-label">Var. 12m</div><div class="metric-value neg">−12,08%</div></div>
-        <div><div class="metric-label">YTD 2026</div><div class="metric-value neg">−3,01%</div></div>
-      </div>
-    </div>
-
-    <!-- ENJU3 -->
-    <div class="card">
-      <div class="card-header">
-        <span class="ticker">ENJU3</span>
-        <span class="dot-new" title="Fato Relevante nos últimos 10 dias"></span>
-      </div>
-      <div class="company">Enjoei</div>
-      <div class="cotacao-row"><span class="cotacao">R$ 1,03</span></div>
-      <div class="data-cot">03/06/2026 · B3 · Fundamentus</div>
-      <div class="metrics">
-        <div><div class="metric-label">P/L</div><div class="metric-value neg">Prejuízo</div></div>
-        <div><div class="metric-label">P/VP</div><div class="metric-value">0,71x</div></div>
-        <div><div class="metric-label">Div. Yield</div><div class="metric-value neu">0%</div></div>
-        <div><div class="metric-label">ROE</div><div class="metric-value neg">−5,9%</div></div>
-        <div><div class="metric-label">Var. 12m</div><div class="metric-value neg">−14,88%</div></div>
-        <div><div class="metric-label">YTD 2026</div><div class="metric-value neg">−3,74%</div></div>
-      </div>
-    </div>
-
-    <!-- HAPV3 -->
-    <div class="card">
-      <div class="card-header">
-        <span class="ticker">HAPV3</span>
-        <span class="dot-new" title="Fato Relevante nos últimos 10 dias — troca de CEO (06/06)"></span>
-      </div>
-      <div class="company">Hapvida</div>
-      <div class="cotacao-row"><span class="cotacao">R$ 13,27</span></div>
-      <div class="data-cot">20/05/2026 · B3 · Fundamentus</div>
-      <div class="metrics">
-        <div><div class="metric-label">P/L</div><div class="metric-value neg">Prejuízo</div></div>
-        <div><div class="metric-label">P/VP</div><div class="metric-value">0,14x</div></div>
-        <div><div class="metric-label">Div. Yield</div><div class="metric-value neu">0%</div></div>
-        <div><div class="metric-label">ROE</div><div class="metric-value neg">−0,9%</div></div>
-        <div><div class="metric-label">Var. 12m</div><div class="metric-value neg">−68,63%</div></div>
-        <div><div class="metric-label">YTD 2026</div><div class="metric-value neg">−9,91%</div></div>
-      </div>
-    </div>
-
-  </div><!-- /cards -->
-
-  <div class="section-title" style="margin-top:2rem">Variação YTD 2026</div>
-  <div class="chart-wrap">
-    <canvas id="ytdChart"></canvas>
+  <div id="cardsGrid" class="cards-grid">
+    <div class="loading"><p>Buscando dados...</p></div>
   </div>
 
-  <div class="section-title">Fatos Relevantes &amp; Comunicados</div>
-  <div class="tabs-nav">
-    <button class="tab-btn active" onclick="showTab('dirr3',this)">DIRR3</button>
-    <button class="tab-btn" onclick="showTab('inbr32',this)">INBR32</button>
-    <button class="tab-btn" onclick="showTab('hubs',this)">HUBS</button>
-    <button class="tab-btn" onclick="showTab('bbas3',this)">BBAS3 <span class="dot-new" style="margin-left:4px"></span></button>
-    <button class="tab-btn" onclick="showTab('enju3',this)">ENJU3 <span class="dot-new" style="margin-left:4px"></span></button>
-    <button class="tab-btn" onclick="showTab('hapv3',this)">HAPV3 <span class="dot-new" style="margin-left:4px"></span></button>
+  <div class="section" id="chartSection" style="display:none">
+    <h2>Performance YTD 2026 (%)</h2>
+    <div class="chart-wrap"><canvas id="perfChart"></canvas></div>
   </div>
 
-  <div id="tab-dirr3" class="tab-content active">
-    <ul class="fr-list">
-      <li class="fr-item">
-        <span class="fr-type FR">FR</span>
-        <a href="https://www.fundamentus.com.br/fatos_relevantes.php?papel=DIRR3" target="_blank">Aprovação de dividendos intermediários — R$ 804,4 mi (R$ 1,55/ação)</a>
-        <div class="fr-meta">mai/2026 · Direcional Engenharia · Fundamentus</div>
-      </li>
-      <li class="fr-item">
-        <span class="fr-type CO">CO</span>
-        <a href="https://www.fundamentus.com.br/fatos_relevantes.php?papel=DIRR3" target="_blank">Resultado 1T26 — lucro +30% a/a, receita R$ 1,2 bi, margens recordes (42,9%)</a>
-        <div class="fr-meta">mai/2026 · Direcional Engenharia · Fundamentus</div>
-      </li>
-    </ul>
+  <div class="section" id="frSection" style="display:none">
+    <h2>Fatos Relevantes &amp; Comunicados</h2>
+    <div class="tabs" id="frTabs"></div>
+    <div id="frContent"></div>
   </div>
 
-  <div id="tab-inbr32" class="tab-content">
-    <ul class="fr-list">
-      <li class="fr-item">
-        <span class="fr-type CO">CO</span>
-        <a href="https://ri.inter.co" target="_blank">Resultado 1T26 — lucro recorde R$ 395 mi (+38% a/a), ROE 15,5%; NPL+90d sobe para 5,1%</a>
-        <div class="fr-meta">mai/2026 · Inter & Co · ri.inter.co</div>
-      </li>
-    </ul>
+  <div class="section" id="clippingSection" style="display:none">
+    <h2>Clipping</h2>
+    <div id="clippingList"></div>
   </div>
 
-  <div id="tab-hubs" class="tab-content">
-    <ul class="fr-list">
-      <li class="fr-item">
-        <span class="fr-type CO">CO</span>
-        <a href="https://ir.hubspot.com/news-releases/news-release-details/hubspot-reports-strong-q1-2026-results" target="_blank">Q1 2026 — revenue $881 mi (+23% a/a), GAAP operacionalmente lucrativo; guidance FY $3,7 bi</a>
-        <div class="fr-meta">07/05/2026 · HubSpot Inc · ir.hubspot.com</div>
-      </li>
-    </ul>
-  </div>
-
-  <div id="tab-bbas3" class="tab-content">
-    <ul class="fr-list">
-      <li class="fr-item">
-        <span class="fr-type FR">FR</span>
-        <a href="https://www.fundamentus.com.br/fatos_relevantes.php?papel=BBAS3" target="_blank">Revisão de guidance 2026 — lucro líquido ajustado R$ 18–22 bi (vs. R$ 22–26 bi anterior)</a>
-        <div class="fr-meta">13/05/2026 · Banco do Brasil · Fundamentus</div>
-      </li>
-      <li class="fr-item">
-        <span class="fr-type CO">CO</span>
-        <a href="https://www.fundamentus.com.br/fatos_relevantes.php?papel=BBAS3" target="_blank">JCP aprovado — R$ 465,7 mi; ex em 01/06/2026, pagamento em 11/06/2026</a>
-        <div class="fr-meta">13/05/2026 · Banco do Brasil · Fundamentus</div>
-      </li>
-      <li class="fr-item">
-        <span class="fr-type CO">CO</span>
-        <a href="https://www.fundamentus.com.br/fatos_relevantes.php?papel=BBAS3" target="_blank">Resultado 1T26 — lucro recorrente R$ 3,43 bi (−53,5% a/a); ROE 7,3%</a>
-        <div class="fr-meta">mai/2026 · Banco do Brasil · Fundamentus</div>
-      </li>
-    </ul>
-  </div>
-
-  <div id="tab-enju3" class="tab-content">
-    <ul class="fr-list">
-      <li class="fr-item">
-        <span class="fr-type FR">FR</span>
-        <a href="https://visnoinvest.com.br/news/13166/enjoei-enju3-aprova-descontinuidade-da-plataforma-elo7" target="_blank">Descontinuidade da plataforma Elo7 — encerramento imediato de novos pedidos</a>
-        <div class="fr-meta">11/05/2026 · Enjoei · CVM</div>
-      </li>
-      <li class="fr-item">
-        <span class="fr-type FR">FR</span>
-        <a href="https://www.moneytimes.com.br/enjoei-enju3-aprova-reducao-de-capital-de-r-426-milhoes-e-preve-restituicao-de-r-020-por-acao/" target="_blank">Redução de capital R$ 426 mi — absorção de prejuízo + restituição R$ 0,20/ação</a>
-        <div class="fr-meta">abr–mai/2026 · Enjoei · CVM</div>
-      </li>
-      <li class="fr-item">
-        <span class="fr-type CO">CO</span>
-        <a href="https://www.fundamentus.com.br/fatos_relevantes.php?papel=ENJU3" target="_blank">Contratação de novo formador de mercado</a>
-        <div class="fr-meta">14/05/2026 · Enjoei · Fundamentus</div>
-      </li>
-    </ul>
-  </div>
-
-  <div id="tab-hapv3" class="tab-content">
-    <ul class="fr-list">
-      <li class="fr-item">
-        <span class="fr-type FR">FR</span>
-        <a href="https://www.seudinheiro.com/2026/empresas/hapvida-hapv3-anuncia-troca-de-ceo-em-meio-a-criticas-a-governanca-e-pressao-por-mudancas-lvgb/" target="_blank">🔴 Troca de CEO — Jorge Pinheiro sai após 27 anos; Luccas Adib assume presidência</a>
-        <div class="fr-meta">06/06/2026 · Hapvida · CVM / Carta ao Mercado</div>
-      </li>
-      <li class="fr-item">
-        <span class="fr-type FR">FR</span>
-        <a href="https://visnoinvest.com.br/news/12944/controladores-reduzem-fatia-para-47-na-hapvida-hapv3" target="_blank">Controladores reduzem participação para ~47% do capital votante</a>
-        <div class="fr-meta">04/05/2026 · Hapvida · CVM</div>
-      </li>
-      <li class="fr-item">
-        <span class="fr-type CO">CO</span>
-        <a href="https://www.fundamentus.com.br/fatos_relevantes.php?papel=HAPV3" target="_blank">Resultado 1T26 — lucro ajustado R$ 244 mi (−41,4% a/a); sinistralidade melhora sequencialmente</a>
-        <div class="fr-meta">mai/2026 · Hapvida · Fundamentus</div>
-      </li>
-    </ul>
-  </div>
-
-  <div class="section-title">Clipping de Notícias</div>
-  <div class="news-grid">
-    <div class="news-card">
-      <div class="news-ticker">DIRR3</div>
-      <div class="news-title"><a href="https://www.infomoney.com.br/mercados/direcional-dirr3-resultados-primeiro-trimestre-2026/" target="_blank">Direcional (DIRR3) tem alta de 30% no lucro líquido do 1T26 — R$ 213,2 mi</a></div>
-      <div class="news-date">mai/2026 · InfoMoney</div>
-    </div>
-    <div class="news-card">
-      <div class="news-ticker">BBAS3</div>
-      <div class="news-title"><a href="https://www.seudinheiro.com/2026/empresas/lucro-do-banco-do-brasil-bbas3-cai-no-1t26-e-roe-rentabilidade-recua-balanco-miql/" target="_blank">Lucro do Banco do Brasil cai mais de 50% no 1T26; piso do guidance vira teto para 2026</a></div>
-      <div class="news-date">mai/2026 · Seu Dinheiro</div>
-    </div>
-    <div class="news-card">
-      <div class="news-ticker">ENJU3</div>
-      <div class="news-title"><a href="https://br.advfn.com/jornal/2026/05/enjoei-encerra-elo7-apos-queda-de-receita-e-pressao-competitiva-no-e-commerce" target="_blank">Enjoei encerra Elo7 após queda de receita e pressão competitiva no e-commerce</a></div>
-      <div class="news-date">11/05/2026 · ADVFN News</div>
-    </div>
-    <div class="news-card">
-      <div class="news-ticker">HAPV3</div>
-      <div class="news-title"><a href="https://www.seudinheiro.com/2026/empresas/hapvida-hapv3-anuncia-troca-de-ceo-em-meio-a-criticas-a-governanca-e-pressao-por-mudancas-lvgb/" target="_blank">Hapvida (HAPV3) troca CEO em meio a resultados pressionados; Luccas Adib assume</a></div>
-      <div class="news-date">06/06/2026 · Seu Dinheiro</div>
-    </div>
-    <div class="news-card">
-      <div class="news-ticker">INBR32</div>
-      <div class="news-title"><a href="https://www.suno.com.br/noticias/inter-inbr32-resultados-1t26-lucro-roe-carteira-credito-go/" target="_blank">Inter (INBR32) lucra R$ 395 mi no 1T26 e ROE sobe para 15,5%</a></div>
-      <div class="news-date">mai/2026 · Suno</div>
-    </div>
-    <div class="news-card">
-      <div class="news-ticker">HUBS</div>
-      <div class="news-title"><a href="https://ir.hubspot.com/news-releases/news-release-details/hubspot-reports-strong-q1-2026-results" target="_blank">HubSpot Q1 2026 — revenue $881M (+23%), raises full-year guidance to $3.7B</a></div>
-      <div class="news-date">07/05/2026 · HubSpot IR</div>
-    </div>
-  </div>
-
-  <p class="note">* Estimativas: P/L e P/VP do INBR32 baseados na Inter&Co subjacente (INTR:Nasdaq); P/E, P/VP e ROE do HUBS são aproximações TTM. Cotações: último dado disponível no Fundamentus/Status Invest.</p>
-
-</main>
-<footer>Painel pessoal — dados: Fundamentus · Status Invest · CVM/ENET — Não constitui recomendação de investimento.</footer>
+  <footer>
+    Painel pessoal &mdash; dados: Fundamentus, Status Invest, CVM/ENET &mdash; Não constitui recomendação de investimento
+  </footer>
+</div>
 
 <script>
-function showTab(ticker, btn) {
-  document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
-  document.getElementById('tab-' + ticker).classList.add('active');
-  btn.classList.add('active');
+// ─── globals ───────────────────────────────────────────────────────────────
+let _data = null;
+let _chart = null;
+
+// ─── helpers ───────────────────────────────────────────────────────────────
+function pClass(v) {
+  if (v === null || v === undefined) return 'neu';
+  return Number(v) >= 0 ? 'pos' : 'neg';
+}
+function fmtPerf(v) {
+  if (v === null || v === undefined) return 'N/D';
+  const n = Number(v);
+  return (n >= 0 ? '+' : '') + n.toFixed(2) + '%';
+}
+function prefixSymbol(currency) {
+  return currency === 'USD' ? 'US$' : 'R$';
 }
 
-const ytdData = [
-  { label: 'INBR32', value: null },
-  { label: 'DIRR3',  value: -11.97 },
-  { label: 'BBAS3',  value: -3.01 },
-  { label: 'ENJU3',  value: -3.74 },
-  { label: 'HAPV3',  value: -9.91 },
-  { label: 'HUBS',   value: -44.57 },
-].filter(d => d.value !== null).sort((a,b) => b.value - a.value);
+// ─── cards ─────────────────────────────────────────────────────────────────
+function renderCards(stocks) {
+  const grid = document.getElementById('cardsGrid');
+  grid.innerHTML = stocks.map(s => `
+    <div class="card">
+      <div class="card-head">
+        <span class="ticker">${s.ticker}${s.hasNew ? '<span class="dot"></span>' : ''}</span>
+        <div style="text-align:right">
+          <div class="company">${s.company}</div>
+          <div class="currency-badge" style="margin-top:4px">${s.currency}</div>
+        </div>
+      </div>
+      <div class="price">${prefixSymbol(s.currency)}${s.price}</div>
+      <div class="price-date">${s.priceDate}</div>
+      <table class="metrics">
+        <tr><td>P/L</td><td>${s.pl}</td></tr>
+        <tr><td>P/VP</td><td>${s.pvp}</td></tr>
+        <tr><td>DY</td><td>${s.dy}</td></tr>
+        <tr><td>ROE</td><td>${s.roe}</td></tr>
+      </table>
+      <div class="perf-row">
+        <span class="${pClass(s.p12m)}">12m: ${fmtPerf(s.p12m)}</span>
+        <span class="${pClass(s.pYtd)}">YTD: ${fmtPerf(s.pYtd)}</span>
+      </div>
+    </div>
+  `).join('');
+}
 
-new Chart(document.getElementById('ytdChart').getContext('2d'), {
-  type: 'bar',
-  data: {
-    labels: ytdData.map(d => d.label),
-    datasets: [{
-      label: 'YTD 2026 (%)',
-      data: ytdData.map(d => d.value),
-      backgroundColor: ytdData.map(d => d.value >= 0 ? '#22c55e55' : '#ef444455'),
-      borderColor:     ytdData.map(d => d.value >= 0 ? '#22c55e'   : '#ef4444'),
-      borderWidth: 1, borderRadius: 4,
-    }]
-  },
-  options: {
-    indexAxis: 'y', responsive: true,
-    plugins: {
-      legend: { display: false },
-      tooltip: { callbacks: { label: c => ' ' + (c.raw >= 0 ? '+' : '') + c.raw.toFixed(2) + '%' } }
+// ─── chart ─────────────────────────────────────────────────────────────────
+function renderChart(stocks) {
+  const chartData = stocks.filter(s => s.pYtd !== null && s.pYtd !== undefined)
+                          .sort((a, b) => b.pYtd - a.pYtd);
+  if (chartData.length === 0) return;
+
+  const section = document.getElementById('chartSection');
+  section.style.display = '';
+
+  if (_chart) _chart.destroy();
+  const ctx = document.getElementById('perfChart').getContext('2d');
+  _chart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: chartData.map(s => s.ticker),
+      datasets: [{
+        label: 'YTD %',
+        data: chartData.map(s => s.pYtd),
+        backgroundColor: chartData.map(s => s.pYtd >= 0 ? 'rgba(34,197,94,.7)' : 'rgba(239,68,68,.7)'),
+        borderColor: chartData.map(s => s.pYtd >= 0 ? '#22c55e' : '#ef4444'),
+        borderWidth: 1,
+        borderRadius: 4,
+      }]
     },
-    scales: {
-      x: { grid: { color: '#2a2d3a' }, ticks: { color: '#8892a4', callback: v => (v >= 0 ? '+' : '') + v + '%' } },
-      y: { grid: { color: '#2a2d3a' }, ticks: { color: '#e2e8f0', font: { weight: '600' } } }
+    options: {
+      indexAxis: 'y',
+      responsive: true,
+      maintainAspectRatio: true,
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: ctx => ' ' + (ctx.raw >= 0 ? '+' : '') + ctx.raw.toFixed(2) + '%'
+          }
+        }
+      },
+      scales: {
+        x: { grid: { color: '#1e293b' }, ticks: { color: '#64748b', callback: v => (v >= 0 ? '+' : '') + v + '%' } },
+        y: { grid: { color: '#1e293b' }, ticks: { color: '#94a3b8', font: { weight: '600' } } }
+      }
     }
+  });
+}
+
+// ─── fatos relevantes ──────────────────────────────────────────────────────
+function renderFRContent(ticker) {
+  const content = document.getElementById('frContent');
+  if (!_data || !_data.fatos) return;
+  const f = _data.fatos[ticker];
+  if (!f) { content.innerHTML = '<p class="error-msg">Sem dados para ' + ticker + '</p>'; return; }
+
+  if (f.type === 'ir') {
+    content.innerHTML = `<p class="fr-ir">Fatos relevantes disponíveis no site de RI: <a href="${f.irUrl}" target="_blank" rel="noopener">${f.irLabel}</a></p>`;
+    return;
   }
-});
+
+  const items = f.items || [];
+  if (items.length === 0) {
+    content.innerHTML = '<p class="fr-ir">Sem fatos relevantes recentes.</p>';
+    return;
+  }
+
+  content.innerHTML = '<ul class="fr-list">' +
+    items.map(item => `
+      <li>
+        <span class="fr-date">${item.date}</span>
+        <span class="fr-badge ${item.badge.toLowerCase()}">${item.badge}</span>
+        <a href="${item.url}" target="_blank" rel="noopener">${item.label}</a>
+      </li>
+    `).join('') +
+  '</ul>';
+}
+
+window.switchTab = function(ticker) {
+  document.querySelectorAll('.tab').forEach(t => {
+    t.classList.toggle('active', t.dataset.ticker === ticker);
+  });
+  renderFRContent(ticker);
+};
+
+function renderFatos(stocks) {
+  if (!stocks || stocks.length === 0) return;
+  const section = document.getElementById('frSection');
+  section.style.display = '';
+  const firstTicker = stocks[0].ticker;
+
+  document.getElementById('frTabs').innerHTML = stocks.map(s =>
+    `<button class="tab${s.ticker === firstTicker ? ' active' : ''}" data-ticker="${s.ticker}" onclick="switchTab('${s.ticker}')">${s.ticker}${s.hasNew ? '<span class="dot"></span>' : ''}</button>`
+  ).join('');
+
+  renderFRContent(firstTicker);
+}
+
+// ─── clipping ──────────────────────────────────────────────────────────────
+function renderClipping(clipping) {
+  const section = document.getElementById('clippingSection');
+  const list = document.getElementById('clippingList');
+
+  if (!clipping || clipping.length === 0) {
+    // Keep section hidden when no clipping
+    return;
+  }
+
+  section.style.display = '';
+  list.innerHTML = clipping.map(c => `
+    <div class="clip-item">
+      <div class="clip-meta">
+        <span class="clip-ticker">${c.ticker}</span>
+        <span class="clip-date">${c.date}</span>
+        <span class="clip-source">${c.source}</span>
+      </div>
+      <a href="${c.url}" target="_blank" rel="noopener">${c.title}</a>
+    </div>
+  `).join('');
+}
+
+// ─── init ──────────────────────────────────────────────────────────────────
+function init(data) {
+  _data = data;
+  document.getElementById('timestamp').textContent = 'Atualizado em ' + data.lastUpdated;
+  renderCards(data.stocks);
+  renderChart(data.stocks);
+  renderFatos(data.stocks);
+  renderClipping(data.clipping);
+}
+
+// ─── fetch data.json ───────────────────────────────────────────────────────
+fetch('data.json?t=' + Date.now(), { cache: 'no-cache' })
+  .then(r => {
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    return r.json();
+  })
+  .then(init)
+  .catch(err => {
+    document.getElementById('timestamp').textContent = 'Erro ao carregar dados';
+    document.getElementById('cardsGrid').innerHTML =
+      '<div class="loading"><p class="error-msg">Falha ao carregar data.json<br><small>' + err.message + '</small></p></div>';
+    console.error('[Painel] Erro ao carregar data.json:', err);
+  });
 </script>
 </body>
 </html>
