@@ -3,6 +3,9 @@
 update_data.py — Atualiza data.json com dados frescos do Fundamentus
 Executado automaticamente pelo GitHub Actions duas vezes por dia.
 
+IMPORTANTE: Este script NUNCA modifica index.html.
+Só escreve em data.json.
+
 Fontes:
   - B3 stocks (source=fundamentus): fundamentus.com.br
   - Demais (source=preserve): mantém dados existentes em data.json
@@ -10,31 +13,68 @@ Fontes:
 
 import json
 import sys
+import time
 from datetime import datetime, date, timedelta
 
 import pytz
 import requests
 from bs4 import BeautifulSoup
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
 
 BRASILIA = pytz.timezone('America/Sao_Paulo')
+
+# Headers realistas de browser para evitar bloqueios
 HEADERS = {
     'User-Agent': (
-        'Mozilla/5.0 (compatible; PainelAcoes/2.0; '
-        '+https://edumvm.github.io/painel-acoes/)'
-    )
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
+        'AppleWebKit/537.36 (KHTML, like Gecko) '
+        'Chrome/125.0.0.0 Safari/537.36'
+    ),
+    'Accept': 'text/html,application/xhtml+xml,application/xhtml+xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
+    'Accept-Language': 'pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7',
+    'Accept-Encoding': 'gzip, deflate, br',
+    'Connection': 'keep-alive',
+    'Upgrade-Insecure-Requests': '1',
+    'Sec-Fetch-Dest': 'document',
+    'Sec-Fetch-Mode': 'navigate',
+    'Sec-Fetch-Site': 'none',
+    'Sec-Fetch-User': '?1',
+    'Cache-Control': 'max-age=0',
 }
+
+
+def make_session():
+    """Cria sessão requests com retry automático."""
+    s = requests.Session()
+    retry = Retry(
+        total=4,
+        backoff_factor=2,          # espera 2s, 4s, 8s entre tentativas
+        status_forcelist=[429, 500, 502, 503, 504],
+        allowed_methods=['GET'],
+    )
+    adapter = HTTPAdapter(max_retries=retry)
+    s.mount('http://', adapter)
+    s.mount('https://', adapter)
+    s.headers.update(HEADERS)
+    return s
+
+
+SESSION = make_session()
 
 
 # ── utils ────────────────────────────────────────────────────────────────────
 
 def fetch_soup(url):
-    r = requests.get(url, headers=HEADERS, timeout=20)
+    """Faz GET com headers de browser e retorna BeautifulSoup (ISO-8859-1)."""
+    r = SESSION.get(url, timeout=30)
+    r.raise_for_status()
     r.encoding = 'iso-8859-1'
     return BeautifulSoup(r.text, 'html.parser')
 
 
 def parse_float(s):
-    # Convert Brazilian/percentage string to float. Returns None on failure.
+    """Converte string brasileira/percentual para float. Retorna None se falhar."""
     if not s or s.strip() in ('-', 'N/D', ''):
         return None
     s = s.strip().rstrip('%').replace('.', '').replace(',', '.')
@@ -47,17 +87,16 @@ def parse_float(s):
 # ── fundamentus ──────────────────────────────────────────────────────────────
 
 def fetch_fundamentus_data(ticker):
-    # Returns dict with price, date, indicators, performances.
+    """Busca cotação e indicadores do Fundamentus. Retorna dict."""
     url = f'https://www.fundamentus.com.br/detalhes.php?papel={ticker}'
     soup = fetch_soup(url)
 
-    # Build flat label -> value dict from all table cells (paired)
+    # Monta dict label -> valor de todas as células pareadas das tabelas
     data = {}
     for row in soup.find_all('tr'):
         cells = row.find_all('td')
         for i in range(0, len(cells) - 1, 2):
             raw_label = cells[i].get_text(' ', strip=True)
-            # Strip leading '?' (fundamentus tooltip icon text)
             label = raw_label.lstrip('?').strip()
             value = cells[i + 1].get_text(strip=True)
             if label:
@@ -76,9 +115,9 @@ def fetch_fundamentus_data(ticker):
     dy_raw    = get('Div. Yield')
     roe_raw   = get('ROE')
     p12m_raw  = get('12 meses')
-    pytd_raw  = get('2026')   # YTD current year
+    pytd_raw  = get('2026')   # YTD ano corrente
 
-    # Format P/L: negative P/L = prejuízo
+    # P/L negativo = prejuízo
     pl_float = parse_float(pl_raw)
     if pl_float is None:
         pl_fmt = pl_raw
@@ -87,12 +126,15 @@ def fetch_fundamentus_data(ticker):
     else:
         pl_fmt = pl_raw + 'x'
 
-    # Format P/VP
     pvp_float = parse_float(pvp_raw)
     pvp_fmt = (pvp_raw + 'x') if pvp_float is not None else pvp_raw
 
     p12m = parse_float(p12m_raw)
     pytd = parse_float(pytd_raw)
+
+    # Validação: se cotação for "N/D" ou vazia, algo deu errado
+    if not price_str or price_str == 'N/D':
+        raise ValueError(f'Cotação vazia para {ticker} — possível bloqueio ou ticker inválido')
 
     return {
         'price':     price_str,
@@ -106,8 +148,10 @@ def fetch_fundamentus_data(ticker):
     }
 
 
-def fetch_fatos_relevantes(ticker, cutoff_days=10):
-    # Returns (items_list, has_new_bool). items_list has at most 5 entries.
+def fetch_fatos_relevantes(ticker, cutoff_days=10, max_items=10):
+    """Busca fatos relevantes e comunicados do Fundamentus.
+    Retorna (items_list, has_new_bool). Até max_items entradas.
+    """
     url = f'https://www.fundamentus.com.br/fatos_relevantes.php?papel={ticker}'
     soup = fetch_soup(url)
 
@@ -122,7 +166,7 @@ def fetch_fatos_relevantes(ticker, cutoff_days=10):
         if len(cells) < 3:
             continue
 
-        # Date cell: "DD/MM/AAAA HH:MM" — take first 10 chars
+        # Célula de data: "DD/MM/AAAA HH:MM" — pega só os 10 primeiros chars
         raw_date = cells[0].get_text(strip=True)[:10]
         tipo     = cells[1].get_text(strip=True).upper()
         link_el  = cells[2].find('a')
@@ -153,7 +197,7 @@ def fetch_fatos_relevantes(ticker, cutoff_days=10):
                 'url':   href,
             })
 
-        if len(items) >= 5:
+        if len(items) >= max_items:
             break
 
     return items, has_new
@@ -178,17 +222,22 @@ def main():
     new_stocks = []
     new_fatos  = {}
 
-    for cfg in config['stocks']:
+    for idx, cfg in enumerate(config['stocks']):
         ticker   = cfg['ticker']
         source   = cfg.get('source', 'fundamentus')
         company  = cfg.get('company', ticker)
         currency = cfg.get('currency', 'BRL')
 
         if source == 'fundamentus':
+            # Pequeno delay entre requisições para não sobrecarregar o servidor
+            if idx > 0:
+                time.sleep(1.5)
+
             print(f'  -> {ticker}: buscando no Fundamentus...')
             try:
                 fd = fetch_fundamentus_data(ticker)
-                fr_items, has_new = fetch_fatos_relevantes(ticker)
+                time.sleep(0.8)  # delay entre detalhes e fatos do mesmo ticker
+                fr_items, has_new = fetch_fatos_relevantes(ticker, max_items=10)
 
                 stock = {
                     'ticker':    ticker,
@@ -205,46 +254,4 @@ def main():
                     'hasNew':    has_new,
                 }
                 new_fatos[ticker] = {'type': 'cvm', 'items': fr_items}
-                print(f'     OK: {fd["price"]} em {fd["priceDate"]}, hasNew={has_new}')
-
-            except Exception as e:
-                print(f'  ERRO ao buscar {ticker}: {e}', file=sys.stderr)
-                # Preserve existing data on error to avoid losing info
-                stock = existing_stocks.get(ticker, {
-                    'ticker': ticker, 'company': company, 'currency': currency,
-                    'price': 'N/D', 'priceDate': 'N/D',
-                    'pl': 'N/D', 'pvp': 'N/D', 'dy': 'N/D', 'roe': 'N/D',
-                    'p12m': None, 'pYtd': None, 'hasNew': False,
-                })
-                new_fatos[ticker] = existing_fatos.get(ticker, {'type': 'cvm', 'items': []})
-
-        else:
-            # source == 'preserve': keep existing data, only update timestamp
-            print(f'  -> {ticker}: preservando dados existentes (source={source})')
-            stock = existing_stocks.get(ticker, {
-                'ticker': ticker, 'company': company, 'currency': currency,
-                'price': 'N/D', 'priceDate': 'N/D',
-                'pl': 'N/D', 'pvp': 'N/D', 'dy': 'N/D', 'roe': 'N/D',
-                'p12m': None, 'pYtd': None, 'hasNew': False,
-            })
-            new_fatos[ticker] = existing_fatos.get(ticker, {
-                'type': 'ir', 'irUrl': '#', 'irLabel': ticker
-            })
-
-        new_stocks.append(stock)
-
-    output = {
-        'lastUpdated': timestamp,
-        'stocks':      new_stocks,
-        'fatos':       new_fatos,
-        'clipping':    existing.get('clipping', []),
-    }
-
-    with open('data.json', 'w', encoding='utf-8') as f:
-        json.dump(output, f, ensure_ascii=False, indent=2)
-
-    print('[update_data] data.json atualizado com sucesso!')
-
-
-if __name__ == '__main__':
-    main()
+             
