@@ -19,8 +19,6 @@ from datetime import datetime, date, timedelta
 import pytz
 import requests
 from bs4 import BeautifulSoup
-from requests.adapters import HTTPAdapter
-from urllib3.util.retry import Retry
 
 BRASILIA = pytz.timezone('America/Sao_Paulo')
 
@@ -43,34 +41,28 @@ HEADERS = {
     'Cache-Control': 'max-age=0',
 }
 
-
-def make_session():
-    """Cria sessão requests com retry automático."""
-    s = requests.Session()
-    retry = Retry(
-        total=4,
-        backoff_factor=2,          # espera 2s, 4s, 8s entre tentativas
-        status_forcelist=[429, 500, 502, 503, 504],
-        allowed_methods=['GET'],
-    )
-    adapter = HTTPAdapter(max_retries=retry)
-    s.mount('http://', adapter)
-    s.mount('https://', adapter)
-    s.headers.update(HEADERS)
-    return s
-
-
-SESSION = make_session()
+SESSION = requests.Session()
+SESSION.headers.update(HEADERS)
 
 
 # ── utils ────────────────────────────────────────────────────────────────────
 
-def fetch_soup(url):
-    """Faz GET com headers de browser e retorna BeautifulSoup (ISO-8859-1)."""
-    r = SESSION.get(url, timeout=30)
-    r.raise_for_status()
-    r.encoding = 'iso-8859-1'
-    return BeautifulSoup(r.text, 'html.parser')
+def fetch_soup(url, retries=4):
+    """Faz GET com headers de browser, retry com backoff, retorna BeautifulSoup."""
+    last_exc = None
+    for attempt in range(retries):
+        try:
+            r = SESSION.get(url, timeout=30)
+            r.raise_for_status()
+            r.encoding = 'iso-8859-1'
+            return BeautifulSoup(r.text, 'html.parser')
+        except Exception as e:
+            last_exc = e
+            if attempt < retries - 1:
+                wait = 2 ** attempt   # 1s, 2s, 4s
+                print(f'  [retry {attempt+1}/{retries-1}] {e} — aguardando {wait}s...')
+                time.sleep(wait)
+    raise last_exc
 
 
 def parse_float(s):
@@ -254,4 +246,5 @@ def main():
                     'hasNew':    has_new,
                 }
                 new_fatos[ticker] = {'type': 'cvm', 'items': fr_items}
-             
+                print(f'     OK: {fd["price"]} em {fd["priceDate"]}, '
+                      f'{len(fr_items)}
