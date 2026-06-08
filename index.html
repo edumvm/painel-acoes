@@ -1,4 +1,10 @@
 <!DOCTYPE html>
+<!-- =====================================================================
+     TEMPLATE FIXO — Painel de Ações | Eduardo
+     Este arquivo define o layout e nunca é modificado pelo script
+     automático. Apenas data.json é atualizado pelo GitHub Actions.
+     Para alterar o layout, edite este arquivo manualmente e faça upload.
+     ===================================================================== -->
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
@@ -36,7 +42,7 @@
     .neg { background: rgba(239,68,68,.15); color: #f87171; }
     .neu { background: #1e293b; color: #64748b; }
 
-    /* Chart */
+    /* Seções */
     .section { background: #1e293b; border-radius: 12px; padding: 20px; margin-bottom: 20px; border: 1px solid #334155; }
     .section h2 { font-size: 0.95rem; font-weight: 600; color: #94a3b8; text-transform: uppercase; letter-spacing: .06em; margin-bottom: 16px; }
     .chart-wrap { max-height: 280px; }
@@ -49,30 +55,34 @@
     .tab.active .dot { background: #fff; }
     .fr-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
     .fr-list li { display: flex; align-items: flex-start; gap: 8px; padding: 10px 12px; background: #0f172a; border-radius: 8px; border: 1px solid #1e293b; }
-    .fr-date { font-size: 0.72rem; color: #64748b; white-space: nowrap; min-width: 72px; padding-top: 1px; }
-    .fr-badge { font-size: 0.65rem; font-weight: 700; padding: 2px 6px; border-radius: 4px; white-space: nowrap; }
+    .fr-date { font-size: 0.72rem; color: #64748b; white-space: nowrap; min-width: 72px; padding-top: 2px; }
+    .fr-badge { font-size: 0.65rem; font-weight: 700; padding: 2px 6px; border-radius: 4px; white-space: nowrap; flex-shrink: 0; }
     .fr-badge.fr { background: rgba(59,130,246,.2); color: #60a5fa; }
     .fr-badge.co { background: rgba(168,85,247,.2); color: #c084fc; }
-    .fr-list a { color: #93c5fd; text-decoration: none; font-size: 0.82rem; line-height: 1.4; }
-    .fr-list a:hover { color: #bfdbfe; text-decoration: underline; }
-    .fr-ir { color: #94a3b8; font-size: 0.85rem; }
-    .fr-ir a { color: #60a5fa; }
+    .fr-link { color: #93c5fd; text-decoration: none; font-size: 0.82rem; line-height: 1.4; display: flex; align-items: flex-start; gap: 4px; }
+    .fr-link:hover { color: #bfdbfe; text-decoration: underline; }
+    .fr-pdf-icon { font-size: 0.75rem; color: #f87171; flex-shrink: 0; padding-top: 1px; }
+    .fr-ir { color: #94a3b8; font-size: 0.85rem; padding: 8px 0; }
+    .fr-ir a { color: #60a5fa; text-decoration: none; }
+    .fr-ir a:hover { text-decoration: underline; }
+    .fr-empty { color: #475569; font-size: 0.82rem; padding: 8px 0; font-style: italic; }
 
-    /* Clipping */
-    .clip-item { padding: 12px 14px; background: #0f172a; border-radius: 8px; border: 1px solid #1e293b; margin-bottom: 8px; }
-    .clip-item:last-child { margin-bottom: 0; }
-    .clip-meta { display: flex; gap: 8px; align-items: center; margin-bottom: 4px; flex-wrap: wrap; }
-    .clip-ticker { font-size: 0.72rem; font-weight: 700; background: #1e293b; padding: 2px 8px; border-radius: 4px; color: #94a3b8; }
-    .clip-date { font-size: 0.72rem; color: #64748b; }
-    .clip-source { font-size: 0.72rem; color: #475569; }
-    .clip-item a { color: #93c5fd; text-decoration: none; font-size: 0.85rem; line-height: 1.4; }
-    .clip-item a:hover { color: #bfdbfe; text-decoration: underline; }
-    .clip-empty { color: #475569; font-size: 0.85rem; text-align: center; padding: 20px; }
+    /* Notícias */
+    .news-item { padding: 12px 14px; background: #0f172a; border-radius: 8px; border: 1px solid #1e293b; margin-bottom: 8px; }
+    .news-item:last-child { margin-bottom: 0; }
+    .news-meta { display: flex; gap: 8px; align-items: center; margin-bottom: 5px; flex-wrap: wrap; }
+    .news-ticker { font-size: 0.72rem; font-weight: 700; background: #1e293b; padding: 2px 8px; border-radius: 4px; color: #94a3b8; }
+    .news-date { font-size: 0.72rem; color: #64748b; }
+    .news-source { font-size: 0.72rem; color: #475569; }
+    .news-item a { color: #93c5fd; text-decoration: none; font-size: 0.85rem; line-height: 1.4; }
+    .news-item a:hover { color: #bfdbfe; text-decoration: underline; }
+    .news-empty { color: #475569; font-size: 0.82rem; padding: 12px 0; text-align: center; font-style: italic; }
+    .news-empty code { background: #0f172a; padding: 1px 6px; border-radius: 4px; font-size: 0.78rem; color: #64748b; }
 
     /* Footer */
     footer { text-align: center; color: #334155; font-size: 0.72rem; padding: 20px 0 8px; border-top: 1px solid #1e293b; margin-top: 8px; }
 
-    /* Loading state */
+    /* Loading */
     .loading { text-align: center; padding: 60px 20px; color: #475569; }
     .loading p { font-size: 0.9rem; margin-top: 12px; }
     .error-msg { color: #f87171; font-size: 0.85rem; text-align: center; padding: 20px; }
@@ -90,28 +100,34 @@
     <span class="timestamp" id="timestamp">Carregando...</span>
   </header>
 
+  <!-- Cards de cotações -->
   <div id="cardsGrid" class="cards-grid">
     <div class="loading"><p>Buscando dados...</p></div>
   </div>
 
+  <!-- Gráfico YTD -->
   <div class="section" id="chartSection" style="display:none">
     <h2>Performance YTD 2026 (%)</h2>
     <div class="chart-wrap"><canvas id="perfChart"></canvas></div>
   </div>
 
+  <!-- Fatos Relevantes & Comunicados -->
   <div class="section" id="frSection" style="display:none">
     <h2>Fatos Relevantes &amp; Comunicados</h2>
     <div class="tabs" id="frTabs"></div>
     <div id="frContent"></div>
   </div>
 
-  <div class="section" id="clippingSection" style="display:none">
-    <h2>Clipping</h2>
-    <div id="clippingList"></div>
+  <!-- Notícias / Clipping -->
+  <div class="section" id="newsSection">
+    <h2>Notícias</h2>
+    <div id="newsList">
+      <p class="news-empty">Nenhuma notícia adicionada.</p>
+    </div>
   </div>
 
   <footer>
-    Painel pessoal &mdash; dados: Fundamentus, Status Invest, CVM/ENET &mdash; Não constitui recomendação de investimento
+    Painel pessoal &mdash; dados: Fundamentus, CVM/ENET &mdash; Não constitui recomendação de investimento
   </footer>
 </div>
 
@@ -133,43 +149,52 @@ function fmtPerf(v) {
 function prefixSymbol(currency) {
   return currency === 'USD' ? 'US$' : 'R$';
 }
+function esc(s) {
+  return String(s)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
 
 // ─── cards ─────────────────────────────────────────────────────────────────
 function renderCards(stocks) {
   const grid = document.getElementById('cardsGrid');
-  grid.innerHTML = stocks.map(s => `
-    <div class="card">
-      <div class="card-head">
-        <span class="ticker">${s.ticker}${s.hasNew ? '<span class="dot"></span>' : ''}</span>
-        <div style="text-align:right">
-          <div class="company">${s.company}</div>
-          <div class="currency-badge" style="margin-top:4px">${s.currency}</div>
-        </div>
-      </div>
-      <div class="price">${prefixSymbol(s.currency)}${s.price}</div>
-      <div class="price-date">${s.priceDate}</div>
-      <table class="metrics">
-        <tr><td>P/L</td><td>${s.pl}</td></tr>
-        <tr><td>P/VP</td><td>${s.pvp}</td></tr>
-        <tr><td>DY</td><td>${s.dy}</td></tr>
-        <tr><td>ROE</td><td>${s.roe}</td></tr>
-      </table>
-      <div class="perf-row">
-        <span class="${pClass(s.p12m)}">12m: ${fmtPerf(s.p12m)}</span>
-        <span class="${pClass(s.pYtd)}">YTD: ${fmtPerf(s.pYtd)}</span>
-      </div>
-    </div>
-  `).join('');
+  grid.innerHTML = stocks.map(s => {
+    const sym = prefixSymbol(s.currency);
+    const hasNew = s.hasNew ? '<span class="dot"></span>' : '';
+    return '<div class="card">' +
+      '<div class="card-head">' +
+        '<span class="ticker">' + esc(s.ticker) + hasNew + '</span>' +
+        '<div style="text-align:right">' +
+          '<div class="company">' + esc(s.company) + '</div>' +
+          '<div class="currency-badge" style="margin-top:4px">' + esc(s.currency) + '</div>' +
+        '</div>' +
+      '</div>' +
+      '<div class="price">' + sym + esc(s.price) + '</div>' +
+      '<div class="price-date">' + esc(s.priceDate) + '</div>' +
+      '<table class="metrics">' +
+        '<tr><td>P/L</td><td>' + esc(s.pl) + '</td></tr>' +
+        '<tr><td>P/VP</td><td>' + esc(s.pvp) + '</td></tr>' +
+        '<tr><td>DY</td><td>' + esc(s.dy) + '</td></tr>' +
+        '<tr><td>ROE</td><td>' + esc(s.roe) + '</td></tr>' +
+      '</table>' +
+      '<div class="perf-row">' +
+        '<span class="' + pClass(s.p12m) + '">12m: ' + fmtPerf(s.p12m) + '</span>' +
+        '<span class="' + pClass(s.pYtd) + '">YTD: ' + fmtPerf(s.pYtd) + '</span>' +
+      '</div>' +
+    '</div>';
+  }).join('');
 }
 
 // ─── chart ─────────────────────────────────────────────────────────────────
 function renderChart(stocks) {
-  const chartData = stocks.filter(s => s.pYtd !== null && s.pYtd !== undefined)
-                          .sort((a, b) => b.pYtd - a.pYtd);
+  const chartData = stocks
+    .filter(s => s.pYtd !== null && s.pYtd !== undefined)
+    .sort((a, b) => b.pYtd - a.pYtd);
   if (chartData.length === 0) return;
 
-  const section = document.getElementById('chartSection');
-  section.style.display = '';
+  document.getElementById('chartSection').style.display = '';
 
   if (_chart) _chart.destroy();
   const ctx = document.getElementById('perfChart').getContext('2d');
@@ -181,7 +206,7 @@ function renderChart(stocks) {
         label: 'YTD %',
         data: chartData.map(s => s.pYtd),
         backgroundColor: chartData.map(s => s.pYtd >= 0 ? 'rgba(34,197,94,.7)' : 'rgba(239,68,68,.7)'),
-        borderColor: chartData.map(s => s.pYtd >= 0 ? '#22c55e' : '#ef4444'),
+        borderColor:     chartData.map(s => s.pYtd >= 0 ? '#22c55e' : '#ef4444'),
         borderWidth: 1,
         borderRadius: 4,
       }]
@@ -211,27 +236,34 @@ function renderFRContent(ticker) {
   const content = document.getElementById('frContent');
   if (!_data || !_data.fatos) return;
   const f = _data.fatos[ticker];
-  if (!f) { content.innerHTML = '<p class="error-msg">Sem dados para ' + ticker + '</p>'; return; }
+  if (!f) {
+    content.innerHTML = '<p class="fr-empty">Sem dados para ' + esc(ticker) + '.</p>';
+    return;
+  }
 
   if (f.type === 'ir') {
-    content.innerHTML = `<p class="fr-ir">Fatos relevantes disponíveis no site de RI: <a href="${f.irUrl}" target="_blank" rel="noopener">${f.irLabel}</a></p>`;
+    content.innerHTML = '<p class="fr-ir">Fatos disponíveis no site de RI: ' +
+      '<a href="' + esc(f.irUrl) + '" target="_blank" rel="noopener">' + esc(f.irLabel) + '</a></p>';
     return;
   }
 
   const items = f.items || [];
   if (items.length === 0) {
-    content.innerHTML = '<p class="fr-ir">Sem fatos relevantes recentes.</p>';
+    content.innerHTML = '<p class="fr-empty">Nenhum fato relevante ou comunicado nos últimos 10 dias.</p>';
     return;
   }
 
   content.innerHTML = '<ul class="fr-list">' +
-    items.map(item => `
-      <li>
-        <span class="fr-date">${item.date}</span>
-        <span class="fr-badge ${item.badge.toLowerCase()}">${item.badge}</span>
-        <a href="${item.url}" target="_blank" rel="noopener">${item.label}</a>
-      </li>
-    `).join('') +
+    items.map(item =>
+      '<li>' +
+        '<span class="fr-date">' + esc(item.date) + '</span>' +
+        '<span class="fr-badge ' + item.badge.toLowerCase() + '">' + esc(item.badge) + '</span>' +
+        '<a class="fr-link" href="' + esc(item.url) + '" target="_blank" rel="noopener" title="Abrir documento">' +
+          '<span class="fr-pdf-icon">📄</span>' +
+          '<span>' + esc(item.label) + '</span>' +
+        '</a>' +
+      '</li>'
+    ).join('') +
   '</ul>';
 }
 
@@ -248,59 +280,16 @@ function renderFatos(stocks) {
   section.style.display = '';
   const firstTicker = stocks[0].ticker;
 
-  document.getElementById('frTabs').innerHTML = stocks.map(s =>
-    `<button class="tab${s.ticker === firstTicker ? ' active' : ''}" data-ticker="${s.ticker}" onclick="switchTab('${s.ticker}')">${s.ticker}${s.hasNew ? '<span class="dot"></span>' : ''}</button>`
-  ).join('');
+  document.getElementById('frTabs').innerHTML = stocks.map(s => {
+    const active = s.ticker === firstTicker ? ' active' : '';
+    const newDot = s.hasNew ? '<span class="dot"></span>' : '';
+    return '<button class="tab' + active + '" data-ticker="' + esc(s.ticker) + '" ' +
+      'onclick="switchTab(\'' + esc(s.ticker) + '\')">' + esc(s.ticker) + newDot + '</button>';
+  }).join('');
 
   renderFRContent(firstTicker);
 }
 
-// ─── clipping ──────────────────────────────────────────────────────────────
-function renderClipping(clipping) {
-  const section = document.getElementById('clippingSection');
-  const list = document.getElementById('clippingList');
-
-  if (!clipping || clipping.length === 0) {
-    // Keep section hidden when no clipping
-    return;
-  }
-
-  section.style.display = '';
-  list.innerHTML = clipping.map(c => `
-    <div class="clip-item">
-      <div class="clip-meta">
-        <span class="clip-ticker">${c.ticker}</span>
-        <span class="clip-date">${c.date}</span>
-        <span class="clip-source">${c.source}</span>
-      </div>
-      <a href="${c.url}" target="_blank" rel="noopener">${c.title}</a>
-    </div>
-  `).join('');
-}
-
-// ─── init ──────────────────────────────────────────────────────────────────
-function init(data) {
-  _data = data;
-  document.getElementById('timestamp').textContent = 'Atualizado em ' + data.lastUpdated;
-  renderCards(data.stocks);
-  renderChart(data.stocks);
-  renderFatos(data.stocks);
-  renderClipping(data.clipping);
-}
-
-// ─── fetch data.json ───────────────────────────────────────────────────────
-fetch('data.json?t=' + Date.now(), { cache: 'no-cache' })
-  .then(r => {
-    if (!r.ok) throw new Error('HTTP ' + r.status);
-    return r.json();
-  })
-  .then(init)
-  .catch(err => {
-    document.getElementById('timestamp').textContent = 'Erro ao carregar dados';
-    document.getElementById('cardsGrid').innerHTML =
-      '<div class="loading"><p class="error-msg">Falha ao carregar data.json<br><small>' + err.message + '</small></p></div>';
-    console.error('[Painel] Erro ao carregar data.json:', err);
-  });
-</script>
-</body>
-</html>
+// ─── notícias ──────────────────────────────────────────────────────────────
+function renderNoticias(clipping) {
+  const list = document.getElementById('news
