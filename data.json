@@ -1,18 +1,18 @@
 {
-  "lastUpdated": "16/06/2026 as 19:51 (Brasilia)",
+  "lastUpdated": "17/06/2026 as 11:27 (Brasilia)",
   "stocks": [
     {
       "ticker": "DIRR3",
       "company": "Direcional",
       "currency": "BRL",
-      "price": "N/D",
-      "priceDate": "N/D",
-      "pl": "N/D",
-      "pvp": "N/D",
-      "dy": "N/D",
-      "roe": "N/D",
-      "p12m": null,
-      "pYtd": null,
+      "price": "13,44",
+      "priceDate": "16/06/2026",
+      "pl": "8,35x",
+      "pvp": "3,28x",
+      "dy": "16,5%",
+      "roe": "39,4%",
+      "p12m": 18.3,
+      "pYtd": -4.82,
       "hasNew": false
     },
     {
@@ -47,49 +47,110 @@
       "ticker": "BBAS3",
       "company": "Banco do Brasil",
       "currency": "BRL",
-      "price": "N/D",
-      "priceDate": "N/D",
-      "pl": "N/D",
-      "pvp": "N/D",
-      "dy": "N/D",
-      "roe": "N/D",
-      "p12m": null,
-      "pYtd": null,
+      "price": "19,40",
+      "priceDate": "16/06/2026",
+      "pl": "7,73x",
+      "pvp": "0,60x",
+      "dy": "2,8%",
+      "roe": "7,7%",
+      "p12m": -8.39,
+      "pYtd": -10.17,
       "hasNew": false
     },
     {
       "ticker": "ENJU3",
       "company": "Enjoei",
       "currency": "BRL",
-      "price": "N/D",
-      "priceDate": "N/D",
-      "pl": "N/D",
-      "pvp": "N/D",
-      "dy": "N/D",
-      "roe": "N/D",
-      "p12m": null,
-      "pYtd": null,
+      "price": "0,98",
+      "priceDate": "16/06/2026",
+      "pl": "Prejuizo",
+      "pvp": "0,68x",
+      "dy": "0,0%",
+      "roe": "-5,9%",
+      "p12m": -18.33,
+      "pYtd": -8.41,
       "hasNew": false
     },
     {
       "ticker": "HAPV3",
       "company": "Hapvida",
       "currency": "BRL",
-      "price": "N/D",
-      "priceDate": "N/D",
-      "pl": "N/D",
-      "pvp": "N/D",
-      "dy": "N/D",
-      "roe": "N/D",
-      "p12m": null,
-      "pYtd": null,
+      "price": "11,21",
+      "priceDate": "16/06/2026",
+      "pl": "Prejuizo",
+      "pvp": "0,12x",
+      "dy": "0,0%",
+      "roe": "-0,9%",
+      "p12m": -70.88,
+      "pYtd": -23.9,
       "hasNew": false
     }
   ],
   "fatos": {
     "DIRR3": {
       "type": "cvm",
-      "items": []
+      "items": [
+        {
+          "date": "09/04/2026",
+          "badge": "CO",
+          "label": "Prévia Operacional 1T26",
+          "url": "#"
+        },
+        {
+          "date": "10/03/2026",
+          "badge": "CO",
+          "label": "Resultado 4T25",
+          "url": "#"
+        },
+        {
+          "date": "15/01/2026",
+          "badge": "CO",
+          "label": "Prévia Operacional 4T25",
+          "url": "#"
+        },
+        {
+          "date": "10/12/2025",
+          "badge": "FR",
+          "label": "Distribuição de Dividendos",
+          "url": "#"
+        },
+        {
+          "date": "13/11/2025",
+          "badge": "CO",
+          "label": "Apresentação Institucional 3T25",
+          "url": "#"
+        },
+        {
+          "date": "13/11/2025",
+          "badge": "CO",
+          "label": "Resultado 3T25",
+          "url": "#"
+        },
+        {
+          "date": "22/10/2025",
+          "badge": "CO",
+          "label": "Conclusão de Operação de Alienação de Participação",
+          "url": "#"
+        },
+        {
+          "date": "09/10/2025",
+          "badge": "CO",
+          "label": "Prévia Operacional 3T25",
+          "url": "#"
+        },
+        {
+          "date": "09/10/2025",
+          "badge": "CO",
+          "label": "Prévia Operacional 3T25",
+          "url": "#"
+        },
+        {
+          "date": "01/10/2025",
+          "badge": "CO",
+          "label": "Memorando de Entendimentos Direcional e Moura Dubeux",
+          "url": "#"
+        }
+      ]
     },
     "INBR32": {
       "type": "ir",
@@ -103,15 +164,198 @@
     },
     "BBAS3": {
       "type": "cvm",
-      "items": []
+      "items": [
+        {
+          "date": "28/05/2026",
+          "badge": "CO",
+          "label": "Comunicado ao Mercado - Relatório Anual 2025",
+          "url": "#"
+        },
+        {
+          "date": "20/05/2026",
+          "badge": "FR",
+          "label": "JCP Antecipação 2T26",
+          "url": "#"
+        },
+        {
+          "date": "13/05/2026",
+          "badge": "FR",
+          "label": "Remuneração Complementar aos Acionistas 1T26",
+          "url": "#"
+        },
+        {
+          "date": "13/05/2026",
+          "badge": "FR",
+          "label": "Projeções 1T26",
+          "url": "#"
+        },
+        {
+          "date": "12/05/2026",
+          "badge": "CO",
+          "label": "Eleição de Administrador",
+          "url": "#"
+        },
+        {
+          "date": "28/04/2026",
+          "badge": "CO",
+          "label": "Eleição de Administradores",
+          "url": "#"
+        },
+        {
+          "date": "27/04/2026",
+          "badge": "CO",
+          "label": "Período de Silêncio",
+          "url": "#"
+        },
+        {
+          "date": "23/04/2026",
+          "badge": "CO",
+          "label": "Emissão Nature Bond",
+          "url": "#"
+        },
+        {
+          "date": "27/03/2026",
+          "badge": "CO",
+          "label": "Movimentações Diretoria Executiva",
+          "url": "#"
+        },
+        {
+          "date": "02/03/2026",
+          "badge": "CO",
+          "label": "Atualização até a data do pagamento do JCP 4T25",
+          "url": "#"
+        }
+      ]
     },
     "ENJU3": {
       "type": "cvm",
-      "items": []
+      "items": [
+        {
+          "date": "03/06/2026",
+          "badge": "CO",
+          "label": "Pagamento Restituição e Tratamento Tributário",
+          "url": "#"
+        },
+        {
+          "date": "01/06/2026",
+          "badge": "CO",
+          "label": "Alteração do Escriturador de Ações",
+          "url": "#"
+        },
+        {
+          "date": "14/05/2026",
+          "badge": "FR",
+          "label": "Contratação de Novo Formador de Mercado",
+          "url": "#"
+        },
+        {
+          "date": "11/05/2026",
+          "badge": "FR",
+          "label": "Descontinuidade das Operações do Elo7",
+          "url": "#"
+        },
+        {
+          "date": "24/04/2026",
+          "badge": "FR",
+          "label": "Aprovação Redução de Capital",
+          "url": "#"
+        },
+        {
+          "date": "01/04/2026",
+          "badge": "FR",
+          "label": "Encerramento de Contrato Formador de Mercado",
+          "url": "#"
+        },
+        {
+          "date": "05/03/2026",
+          "badge": "FR",
+          "label": "Ofício B3 suspensão do prazo para enquadramento.",
+          "url": "#"
+        },
+        {
+          "date": "05/01/2026",
+          "badge": "FR",
+          "label": "Eleição de novo CFO e DRI",
+          "url": "#"
+        },
+        {
+          "date": "23/12/2025",
+          "badge": "FR",
+          "label": "Redução de Capital.",
+          "url": "#"
+        },
+        {
+          "date": "22/10/2025",
+          "badge": "FR",
+          "label": "Resposta ao ofício B3",
+          "url": "#"
+        }
+      ]
     },
     "HAPV3": {
       "type": "cvm",
-      "items": []
+      "items": [
+        {
+          "date": "04/05/2026",
+          "badge": "CO",
+          "label": "Alienação de participação acionária",
+          "url": "#"
+        },
+        {
+          "date": "28/04/2026",
+          "badge": "CO",
+          "label": "Retirada candidato membro CA - Carlos Augusto Piani",
+          "url": "#"
+        },
+        {
+          "date": "09/04/2026",
+          "badge": "CO",
+          "label": "Nova Administração",
+          "url": "#"
+        },
+        {
+          "date": "06/04/2026",
+          "badge": "CO",
+          "label": "Carta - Jorge Pinheiro",
+          "url": "#"
+        },
+        {
+          "date": "02/02/2026",
+          "badge": "CO",
+          "label": "Entrega de Imóvel Não Operacional",
+          "url": "#"
+        },
+        {
+          "date": "27/01/2026",
+          "badge": "CO",
+          "label": "Rescisão de Contrato Vinculante ? Hospital do Méier (RJ)",
+          "url": "#"
+        },
+        {
+          "date": "13/01/2026",
+          "badge": "CO",
+          "label": "Vice-Presidência Comercial",
+          "url": "#"
+        },
+        {
+          "date": "22/12/2025",
+          "badge": "FR",
+          "label": "Processo Sucessório da Administração",
+          "url": "#"
+        },
+        {
+          "date": "15/12/2025",
+          "badge": "CO",
+          "label": "Ratings",
+          "url": "#"
+        },
+        {
+          "date": "14/11/2025",
+          "badge": "CO",
+          "label": "Aumento de Participação Acionária",
+          "url": "#"
+        }
+      ]
     }
   },
   "clipping": []
