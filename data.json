@@ -1,18 +1,18 @@
 {
-  "lastUpdated": "23/06/2026 as 19:09 (Brasilia)",
+  "lastUpdated": "24/06/2026 as 10:23 (Brasilia)",
   "stocks": [
     {
       "ticker": "DIRR3",
       "company": "Direcional",
       "currency": "BRL",
-      "price": "13,73",
-      "priceDate": "22/06/2026",
-      "pl": "8,53x",
-      "pvp": "3,36x",
+      "price": "13,80",
+      "priceDate": "23/06/2026",
+      "pl": "8,57x",
+      "pvp": "3,37x",
       "dy": "16,1%",
       "roe": "39,4%",
-      "p12m": 13.14,
-      "pYtd": -2.76,
+      "p12m": 13.72,
+      "pYtd": -2.27,
       "hasNew": false
     },
     {
@@ -47,42 +47,42 @@
       "ticker": "BBAS3",
       "company": "Banco do Brasil",
       "currency": "BRL",
-      "price": "19,58",
-      "priceDate": "22/06/2026",
-      "pl": "7,80x",
-      "pvp": "0,60x",
+      "price": "19,86",
+      "priceDate": "23/06/2026",
+      "pl": "7,91x",
+      "pvp": "0,61x",
       "dy": "2,8%",
       "roe": "7,7%",
-      "p12m": -6.5,
-      "pYtd": -9.34,
+      "p12m": -5.16,
+      "pYtd": -8.04,
       "hasNew": false
     },
     {
       "ticker": "ENJU3",
       "company": "Enjoei",
       "currency": "BRL",
-      "price": "1,00",
-      "priceDate": "22/06/2026",
+      "price": "1,03",
+      "priceDate": "23/06/2026",
       "pl": "Prejuizo",
-      "pvp": "0,69x",
+      "pvp": "0,71x",
       "dy": "0,0%",
       "roe": "-5,9%",
-      "p12m": -13.04,
-      "pYtd": -6.54,
-      "hasNew": false
+      "p12m": -10.43,
+      "pYtd": -3.74,
+      "hasNew": true
     },
     {
       "ticker": "HAPV3",
       "company": "Hapvida",
       "currency": "BRL",
-      "price": "10,61",
-      "priceDate": "22/06/2026",
+      "price": "10,28",
+      "priceDate": "23/06/2026",
       "pl": "Prejuizo",
       "pvp": "0,11x",
       "dy": "0,0%",
       "roe": "-0,9%",
-      "p12m": -71.65,
-      "pYtd": -27.97,
+      "p12m": -72.53,
+      "pYtd": -30.21,
       "hasNew": false
     }
   ],
@@ -231,6 +231,12 @@
       "type": "cvm",
       "items": [
         {
+          "date": "24/06/2026",
+          "badge": "FR",
+          "label": "Encerramento do Prazo de Oposição de Credores",
+          "url": "#"
+        },
+        {
           "date": "03/06/2026",
           "badge": "CO",
           "label": "Pagamento Restituição e Tratamento Tributário",
@@ -282,12 +288,6 @@
           "date": "23/12/2025",
           "badge": "FR",
           "label": "Redução de Capital.",
-          "url": "#"
-        },
-        {
-          "date": "22/10/2025",
-          "badge": "FR",
-          "label": "Resposta ao ofício B3",
           "url": "#"
         }
       ]
