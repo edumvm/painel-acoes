@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "26/06/2026 as 10:13 (Brasilia)",
+  "lastUpdated": "26/06/2026 as 19:08 (Brasilia)",
   "stocks": [
     {
       "ticker": "DIRR3",
@@ -55,7 +55,7 @@
       "roe": "7,7%",
       "p12m": -4.66,
       "pYtd": -7.16,
-      "hasNew": false
+      "hasNew": true
     },
     {
       "ticker": "ENJU3",
@@ -166,6 +166,12 @@
       "type": "cvm",
       "items": [
         {
+          "date": "26/06/2026",
+          "badge": "CO",
+          "label": "Repactuação do Cronograma do IHCD",
+          "url": "#"
+        },
+        {
           "date": "28/05/2026",
           "badge": "CO",
           "label": "Comunicado ao Mercado - Relatório Anual 2025",
@@ -217,12 +223,6 @@
           "date": "27/03/2026",
           "badge": "CO",
           "label": "Movimentações Diretoria Executiva",
-          "url": "#"
-        },
-        {
-          "date": "02/03/2026",
-          "badge": "CO",
-          "label": "Atualização até a data do pagamento do JCP 4T25",
           "url": "#"
         }
       ]
