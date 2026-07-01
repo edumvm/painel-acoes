@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "01/07/2026 as 10:34 (Brasilia)",
+  "lastUpdated": "01/07/2026 as 19:15 (Brasilia)",
   "stocks": [
     {
       "ticker": "DIRR3",
@@ -231,6 +231,12 @@
       "type": "cvm",
       "items": [
         {
+          "date": "01/07/2026",
+          "badge": "FR",
+          "label": "Transição CEO",
+          "url": "#"
+        },
+        {
           "date": "24/06/2026",
           "badge": "FR",
           "label": "Encerramento do Prazo de Oposição de Credores",
@@ -282,12 +288,6 @@
           "date": "05/01/2026",
           "badge": "FR",
           "label": "Eleição de novo CFO e DRI",
-          "url": "#"
-        },
-        {
-          "date": "23/12/2025",
-          "badge": "FR",
-          "label": "Redução de Capital.",
           "url": "#"
         }
       ]
