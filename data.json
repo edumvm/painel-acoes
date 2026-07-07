@@ -1,18 +1,18 @@
 {
-  "lastUpdated": "06/07/2026 as 19:10 (Brasilia)",
+  "lastUpdated": "07/07/2026 as 10:21 (Brasilia)",
   "stocks": [
     {
       "ticker": "DIRR3",
       "company": "Direcional",
       "currency": "BRL",
-      "price": "14,28",
-      "priceDate": "03/07/2026",
-      "pl": "8,87x",
-      "pvp": "3,49x",
-      "dy": "10,9%",
+      "price": "13,88",
+      "priceDate": "06/07/2026",
+      "pl": "8,62x",
+      "pvp": "3,39x",
+      "dy": "11,2%",
       "roe": "39,4%",
-      "p12m": 18.52,
-      "pYtd": 1.13,
+      "p12m": 11.81,
+      "pYtd": -1.7,
       "hasNew": false
     },
     {
@@ -47,27 +47,27 @@
       "ticker": "BBAS3",
       "company": "Banco do Brasil",
       "currency": "BRL",
-      "price": "19,98",
-      "priceDate": "03/07/2026",
-      "pl": "7,96x",
+      "price": "19,77",
+      "priceDate": "06/07/2026",
+      "pl": "7,88x",
       "pvp": "0,61x",
       "dy": "2,8%",
       "roe": "7,7%",
-      "p12m": -7.37,
-      "pYtd": -7.48,
-      "hasNew": true
+      "p12m": -10.14,
+      "pYtd": -8.46,
+      "hasNew": false
     },
     {
       "ticker": "ENJU3",
       "company": "Enjoei",
       "currency": "BRL",
       "price": "0,78",
-      "priceDate": "03/07/2026",
+      "priceDate": "06/07/2026",
       "pl": "Prejuizo",
       "pvp": "0,54x",
       "dy": "25,9%",
       "roe": "-5,9%",
-      "p12m": -16.49,
+      "p12m": -13.54,
       "pYtd": -8.69,
       "hasNew": true
     },
@@ -75,14 +75,14 @@
       "ticker": "HAPV3",
       "company": "Hapvida",
       "currency": "BRL",
-      "price": "10,63",
-      "priceDate": "03/07/2026",
+      "price": "10,38",
+      "priceDate": "06/07/2026",
       "pl": "Prejuizo",
       "pvp": "0,11x",
       "dy": "0,0%",
       "roe": "-0,9%",
-      "p12m": -69.22,
-      "pYtd": -27.83,
+      "p12m": -70.85,
+      "pYtd": -29.53,
       "hasNew": false
     }
   ],
@@ -231,6 +231,12 @@
       "type": "cvm",
       "items": [
         {
+          "date": "06/07/2026",
+          "badge": "FR",
+          "label": "Resposta ao ofício B3",
+          "url": "#"
+        },
+        {
           "date": "01/07/2026",
           "badge": "FR",
           "label": "Transição CEO",
@@ -282,12 +288,6 @@
           "date": "05/03/2026",
           "badge": "FR",
           "label": "Ofício B3 suspensão do prazo para enquadramento.",
-          "url": "#"
-        },
-        {
-          "date": "05/01/2026",
-          "badge": "FR",
-          "label": "Eleição de novo CFO e DRI",
           "url": "#"
         }
       ]
