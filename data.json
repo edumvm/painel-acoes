@@ -1,19 +1,19 @@
 {
-  "lastUpdated": "08/07/2026 as 19:01 (Brasilia)",
+  "lastUpdated": "09/07/2026 as 10:50 (Brasilia)",
   "stocks": [
     {
       "ticker": "DIRR3",
       "company": "Direcional",
       "currency": "BRL",
-      "price": "13,41",
-      "priceDate": "07/07/2026",
-      "pl": "8,33x",
-      "pvp": "3,28x",
-      "dy": "11,6%",
+      "price": "12,58",
+      "priceDate": "08/07/2026",
+      "pl": "7,81x",
+      "pvp": "3,07x",
+      "dy": "12,3%",
       "roe": "39,4%",
-      "p12m": 8.03,
-      "pYtd": -5.03,
-      "hasNew": false
+      "p12m": 3.07,
+      "pYtd": -10.91,
+      "hasNew": true
     },
     {
       "ticker": "INBR32",
@@ -47,42 +47,42 @@
       "ticker": "BBAS3",
       "company": "Banco do Brasil",
       "currency": "BRL",
-      "price": "19,73",
-      "priceDate": "07/07/2026",
-      "pl": "7,86x",
-      "pvp": "0,61x",
+      "price": "19,53",
+      "priceDate": "08/07/2026",
+      "pl": "7,78x",
+      "pvp": "0,60x",
       "dy": "2,8%",
       "roe": "7,7%",
-      "p12m": -10.32,
-      "pYtd": -8.64,
+      "p12m": -9.74,
+      "pYtd": -9.57,
       "hasNew": false
     },
     {
       "ticker": "ENJU3",
       "company": "Enjoei",
       "currency": "BRL",
-      "price": "0,78",
-      "priceDate": "07/07/2026",
+      "price": "0,82",
+      "priceDate": "08/07/2026",
       "pl": "Prejuizo",
-      "pvp": "0,54x",
-      "dy": "25,9%",
+      "pvp": "0,57x",
+      "dy": "24,6%",
       "roe": "-5,9%",
-      "p12m": -13.54,
-      "pYtd": -8.69,
+      "p12m": -9.1,
+      "pYtd": -4.0,
       "hasNew": true
     },
     {
       "ticker": "HAPV3",
       "company": "Hapvida",
       "currency": "BRL",
-      "price": "10,19",
-      "priceDate": "07/07/2026",
+      "price": "9,96",
+      "priceDate": "08/07/2026",
       "pl": "Prejuizo",
-      "pvp": "0,11x",
+      "pvp": "0,10x",
       "dy": "0,0%",
       "roe": "-0,9%",
-      "p12m": -71.38,
-      "pYtd": -30.82,
+      "p12m": -71.43,
+      "pYtd": -32.38,
       "hasNew": false
     }
   ],
@@ -90,6 +90,12 @@
     "DIRR3": {
       "type": "cvm",
       "items": [
+        {
+          "date": "08/07/2026",
+          "badge": "CO",
+          "label": "Prévia Operacional 2T26",
+          "url": "#"
+        },
         {
           "date": "09/04/2026",
           "badge": "CO",
@@ -142,12 +148,6 @@
           "date": "09/10/2025",
           "badge": "CO",
           "label": "Prévia Operacional 3T25",
-          "url": "#"
-        },
-        {
-          "date": "01/10/2025",
-          "badge": "CO",
-          "label": "Memorando de Entendimentos Direcional e Moura Dubeux",
           "url": "#"
         }
       ]
