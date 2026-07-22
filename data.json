@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "22/07/2026 as 09:25 (Brasilia)",
+  "lastUpdated": "22/07/2026 as 19:01 (Brasilia)",
   "stocks": [
     {
       "ticker": "DIRR3",
@@ -55,7 +55,7 @@
       "roe": "7,7%",
       "p12m": 5.07,
       "pYtd": -3.32,
-      "hasNew": false
+      "hasNew": true
     },
     {
       "ticker": "ENJU3",
@@ -166,6 +166,12 @@
       "type": "cvm",
       "items": [
         {
+          "date": "22/07/2026",
+          "badge": "CO",
+          "label": "Medida Provisória 1376",
+          "url": "#"
+        },
+        {
           "date": "26/06/2026",
           "badge": "CO",
           "label": "Repactuação do Cronograma do IHCD",
@@ -217,12 +223,6 @@
           "date": "23/04/2026",
           "badge": "CO",
           "label": "Emissão Nature Bond",
-          "url": "#"
-        },
-        {
-          "date": "27/03/2026",
-          "badge": "CO",
-          "label": "Movimentações Diretoria Executiva",
           "url": "#"
         }
       ]
