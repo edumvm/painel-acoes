@@ -1,18 +1,18 @@
 {
-  "lastUpdated": "27/07/2026 as 19:01 (Brasilia)",
+  "lastUpdated": "28/07/2026 as 09:55 (Brasilia)",
   "stocks": [
     {
       "ticker": "DIRR3",
       "company": "Direcional",
       "currency": "BRL",
-      "price": "11,45",
-      "priceDate": "24/07/2026",
-      "pl": "7,11x",
-      "pvp": "2,80x",
-      "dy": "13,5%",
+      "price": "11,84",
+      "priceDate": "27/07/2026",
+      "pl": "7,35x",
+      "pvp": "2,89x",
+      "dy": "13,1%",
       "roe": "39,4%",
-      "p12m": -4.05,
-      "pYtd": -18.91,
+      "p12m": 2.33,
+      "pYtd": -16.15,
       "hasNew": false
     },
     {
@@ -47,42 +47,42 @@
       "ticker": "BBAS3",
       "company": "Banco do Brasil",
       "currency": "BRL",
-      "price": "20,35",
-      "priceDate": "24/07/2026",
-      "pl": "8,11x",
+      "price": "20,50",
+      "priceDate": "27/07/2026",
+      "pl": "8,17x",
       "pvp": "0,63x",
       "dy": "2,7%",
       "roe": "7,7%",
-      "p12m": 2.66,
-      "pYtd": -5.77,
+      "p12m": 3.26,
+      "pYtd": -5.08,
       "hasNew": true
     },
     {
       "ticker": "ENJU3",
       "company": "Enjoei",
       "currency": "BRL",
-      "price": "0,80",
-      "priceDate": "24/07/2026",
+      "price": "0,78",
+      "priceDate": "27/07/2026",
       "pl": "Prejuizo",
-      "pvp": "0,55x",
-      "dy": "25,2%",
+      "pvp": "0,54x",
+      "dy": "25,9%",
       "roe": "-5,9%",
-      "p12m": -2.7,
-      "pYtd": -6.35,
+      "p12m": -5.13,
+      "pYtd": -8.69,
       "hasNew": false
     },
     {
       "ticker": "HAPV3",
       "company": "Hapvida",
       "currency": "BRL",
-      "price": "9,92",
-      "priceDate": "24/07/2026",
+      "price": "10,19",
+      "priceDate": "27/07/2026",
       "pl": "Prejuizo",
-      "pvp": "0,10x",
+      "pvp": "0,11x",
       "dy": "0,0%",
       "roe": "-0,9%",
-      "p12m": -68.82,
-      "pYtd": -32.65,
+      "p12m": -68.72,
+      "pYtd": -30.82,
       "hasNew": false
     }
   ],
@@ -166,6 +166,12 @@
       "type": "cvm",
       "items": [
         {
+          "date": "28/07/2026",
+          "badge": "CO",
+          "label": "Período de Silêncio 2T26",
+          "url": "#"
+        },
+        {
           "date": "22/07/2026",
           "badge": "CO",
           "label": "Medida Provisória 1376",
@@ -217,12 +223,6 @@
           "date": "27/04/2026",
           "badge": "CO",
           "label": "Período de Silêncio",
-          "url": "#"
-        },
-        {
-          "date": "23/04/2026",
-          "badge": "CO",
-          "label": "Emissão Nature Bond",
           "url": "#"
         }
       ]
