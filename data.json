@@ -1,18 +1,18 @@
 {
-  "lastUpdated": "10/08/2026 as 18:36 (Brasilia)",
+  "lastUpdated": "11/08/2026 as 08:44 (Brasilia)",
   "stocks": [
     {
       "ticker": "DIRR3",
       "company": "Direcional",
       "currency": "BRL",
-      "price": "11,58",
-      "priceDate": "07/08/2026",
-      "pl": "7,19x",
-      "pvp": "2,83x",
-      "dy": "13,4%",
+      "price": "11,32",
+      "priceDate": "10/08/2026",
+      "pl": "7,03x",
+      "pvp": "2,77x",
+      "dy": "13,7%",
       "roe": "39,4%",
-      "p12m": -7.06,
-      "pYtd": -17.99,
+      "p12m": -8.59,
+      "pYtd": -19.83,
       "hasNew": false
     },
     {
@@ -47,42 +47,42 @@
       "ticker": "BBAS3",
       "company": "Banco do Brasil",
       "currency": "BRL",
-      "price": "20,06",
-      "priceDate": "07/08/2026",
-      "pl": "7,99x",
+      "price": "20,03",
+      "priceDate": "10/08/2026",
+      "pl": "7,98x",
       "pvp": "0,62x",
       "dy": "2,7%",
       "roe": "7,7%",
-      "p12m": 9.37,
-      "pYtd": -7.11,
+      "p12m": 7.88,
+      "pYtd": -7.25,
       "hasNew": false
     },
     {
       "ticker": "ENJU3",
       "company": "Enjoei",
       "currency": "BRL",
-      "price": "0,79",
-      "priceDate": "07/08/2026",
+      "price": "0,83",
+      "priceDate": "10/08/2026",
       "pl": "Prejuizo",
-      "pvp": "0,55x",
-      "dy": "25,5%",
+      "pvp": "0,57x",
+      "dy": "24,3%",
       "roe": "-5,9%",
-      "p12m": -1.04,
-      "pYtd": -7.52,
-      "hasNew": false
+      "p12m": 3.97,
+      "pYtd": -2.83,
+      "hasNew": true
     },
     {
       "ticker": "HAPV3",
       "company": "Hapvida",
       "currency": "BRL",
-      "price": "10,77",
-      "priceDate": "07/08/2026",
+      "price": "10,30",
+      "priceDate": "10/08/2026",
       "pl": "Prejuizo",
       "pvp": "0,11x",
       "dy": "0,0%",
       "roe": "-0,9%",
-      "p12m": -69.97,
-      "pYtd": -26.88,
+      "p12m": -71.09,
+      "pYtd": -30.07,
       "hasNew": false
     }
   ],
@@ -231,6 +231,12 @@
       "type": "cvm",
       "items": [
         {
+          "date": "10/08/2026",
+          "badge": "CO",
+          "label": "Alteração no Conselho de Administração",
+          "url": "#"
+        },
+        {
           "date": "06/07/2026",
           "badge": "FR",
           "label": "Resposta ao ofício B3",
@@ -282,12 +288,6 @@
           "date": "01/04/2026",
           "badge": "FR",
           "label": "Encerramento de Contrato Formador de Mercado",
-          "url": "#"
-        },
-        {
-          "date": "05/03/2026",
-          "badge": "FR",
-          "label": "Ofício B3 suspensão do prazo para enquadramento.",
           "url": "#"
         }
       ]
