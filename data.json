@@ -1,19 +1,19 @@
 {
-  "lastUpdated": "11/08/2026 as 18:41 (Brasilia)",
+  "lastUpdated": "12/08/2026 as 08:46 (Brasilia)",
   "stocks": [
     {
       "ticker": "DIRR3",
       "company": "Direcional",
       "currency": "BRL",
-      "price": "11,32",
-      "priceDate": "10/08/2026",
-      "pl": "7,03x",
-      "pvp": "2,77x",
-      "dy": "13,7%",
-      "roe": "39,4%",
-      "p12m": -8.59,
-      "pYtd": -19.83,
-      "hasNew": false
+      "price": "11,01",
+      "priceDate": "11/08/2026",
+      "pl": "6,70x",
+      "pvp": "2,46x",
+      "dy": "14,1%",
+      "roe": "36,8%",
+      "p12m": -11.09,
+      "pYtd": -22.03,
+      "hasNew": true
     },
     {
       "ticker": "INBR32",
@@ -47,42 +47,42 @@
       "ticker": "BBAS3",
       "company": "Banco do Brasil",
       "currency": "BRL",
-      "price": "20,03",
-      "priceDate": "10/08/2026",
-      "pl": "7,98x",
-      "pvp": "0,62x",
-      "dy": "2,7%",
+      "price": "19,28",
+      "priceDate": "11/08/2026",
+      "pl": "7,68x",
+      "pvp": "0,59x",
+      "dy": "2,9%",
       "roe": "7,7%",
-      "p12m": 7.88,
-      "pYtd": -7.25,
+      "p12m": 3.84,
+      "pYtd": -10.73,
       "hasNew": false
     },
     {
       "ticker": "ENJU3",
       "company": "Enjoei",
       "currency": "BRL",
-      "price": "0,83",
-      "priceDate": "10/08/2026",
+      "price": "0,78",
+      "priceDate": "11/08/2026",
       "pl": "Prejuizo",
-      "pvp": "0,57x",
-      "dy": "24,3%",
-      "roe": "-5,9%",
-      "p12m": 3.97,
-      "pYtd": -2.83,
+      "pvp": "0,77x",
+      "dy": "25,9%",
+      "roe": "-27,5%",
+      "p12m": -2.29,
+      "pYtd": -8.69,
       "hasNew": true
     },
     {
       "ticker": "HAPV3",
       "company": "Hapvida",
       "currency": "BRL",
-      "price": "10,30",
-      "priceDate": "10/08/2026",
+      "price": "9,79",
+      "priceDate": "11/08/2026",
       "pl": "Prejuizo",
-      "pvp": "0,11x",
+      "pvp": "0,10x",
       "dy": "0,0%",
       "roe": "-0,9%",
-      "p12m": -71.09,
-      "pYtd": -30.07,
+      "p12m": -72.52,
+      "pYtd": -33.54,
       "hasNew": false
     }
   ],
@@ -90,6 +90,12 @@
     "DIRR3": {
       "type": "cvm",
       "items": [
+        {
+          "date": "11/08/2026",
+          "badge": "FR",
+          "label": "Aprovação do novo Programa de Recompra de Ações",
+          "url": "#"
+        },
         {
           "date": "08/07/2026",
           "badge": "CO",
@@ -136,12 +142,6 @@
           "date": "22/10/2025",
           "badge": "CO",
           "label": "Conclusão de Operação de Alienação de Participação",
-          "url": "#"
-        },
-        {
-          "date": "09/10/2025",
-          "badge": "CO",
-          "label": "Prévia Operacional 3T25",
           "url": "#"
         },
         {
