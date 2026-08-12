@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "12/08/2026 as 08:46 (Brasilia)",
+  "lastUpdated": "12/08/2026 as 18:40 (Brasilia)",
   "stocks": [
     {
       "ticker": "DIRR3",
@@ -55,7 +55,7 @@
       "roe": "7,7%",
       "p12m": 3.84,
       "pYtd": -10.73,
-      "hasNew": false
+      "hasNew": true
     },
     {
       "ticker": "ENJU3",
@@ -166,6 +166,12 @@
       "type": "cvm",
       "items": [
         {
+          "date": "12/08/2026",
+          "badge": "FR",
+          "label": "Remuneração Complementar aos Acionistas 2T26",
+          "url": "#"
+        },
+        {
           "date": "28/07/2026",
           "badge": "CO",
           "label": "Período de Silêncio 2T26",
@@ -217,12 +223,6 @@
           "date": "28/04/2026",
           "badge": "CO",
           "label": "Eleição de Administradores",
-          "url": "#"
-        },
-        {
-          "date": "27/04/2026",
-          "badge": "CO",
-          "label": "Período de Silêncio",
           "url": "#"
         }
       ]
