@@ -1,18 +1,18 @@
 {
-  "lastUpdated": "19/08/2026 as 18:20 (Brasilia)",
+  "lastUpdated": "20/08/2026 as 08:27 (Brasilia)",
   "stocks": [
     {
       "ticker": "DIRR3",
       "company": "Direcional",
       "currency": "BRL",
-      "price": "10,30",
-      "priceDate": "18/08/2026",
-      "pl": "6,26x",
-      "pvp": "2,30x",
-      "dy": "15,0%",
+      "price": "10,51",
+      "priceDate": "19/08/2026",
+      "pl": "6,39x",
+      "pvp": "2,35x",
+      "dy": "14,7%",
       "roe": "36,8%",
-      "p12m": -20.14,
-      "pYtd": -27.05,
+      "p12m": -17.7,
+      "pYtd": -25.57,
       "hasNew": true
     },
     {
@@ -47,42 +47,42 @@
       "ticker": "BBAS3",
       "company": "Banco do Brasil",
       "currency": "BRL",
-      "price": "17,80",
-      "priceDate": "18/08/2026",
-      "pl": "7,04x",
-      "pvp": "0,56x",
-      "dy": "3,1%",
+      "price": "18,08",
+      "priceDate": "19/08/2026",
+      "pl": "7,15x",
+      "pvp": "0,57x",
+      "dy": "3,0%",
       "roe": "8,0%",
-      "p12m": -12.12,
-      "pYtd": -17.58,
+      "p12m": -12.51,
+      "pYtd": -16.28,
       "hasNew": true
     },
     {
       "ticker": "ENJU3",
       "company": "Enjoei",
       "currency": "BRL",
-      "price": "0,84",
-      "priceDate": "18/08/2026",
+      "price": "0,80",
+      "priceDate": "19/08/2026",
       "pl": "Prejuizo",
-      "pvp": "0,83x",
-      "dy": "24,0%",
+      "pvp": "0,79x",
+      "dy": "25,2%",
       "roe": "-27,5%",
-      "p12m": 6.29,
-      "pYtd": -1.66,
+      "p12m": 1.23,
+      "pYtd": -6.35,
       "hasNew": true
     },
     {
       "ticker": "HAPV3",
       "company": "Hapvida",
       "currency": "BRL",
-      "price": "6,78",
-      "priceDate": "18/08/2026",
+      "price": "6,56",
+      "priceDate": "19/08/2026",
       "pl": "Prejuizo",
       "pvp": "0,07x",
       "dy": "0,0%",
       "roe": "-0,4%",
-      "p12m": -82.25,
-      "pYtd": -53.97,
+      "p12m": -83.34,
+      "pYtd": -55.47,
       "hasNew": false
     }
   ],
@@ -166,6 +166,12 @@
       "type": "cvm",
       "items": [
         {
+          "date": "19/08/2026",
+          "badge": "FR",
+          "label": "JCP antecipação 3T26",
+          "url": "#"
+        },
+        {
           "date": "12/08/2026",
           "badge": "FR",
           "label": "Remuneração Complementar aos Acionistas 2T26",
@@ -217,12 +223,6 @@
           "date": "12/05/2026",
           "badge": "CO",
           "label": "Eleição de Administrador",
-          "url": "#"
-        },
-        {
-          "date": "28/04/2026",
-          "badge": "CO",
-          "label": "Eleição de Administradores",
           "url": "#"
         }
       ]
