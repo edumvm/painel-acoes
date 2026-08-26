@@ -1,18 +1,18 @@
 {
-  "lastUpdated": "25/08/2026 as 18:22 (Brasilia)",
+  "lastUpdated": "26/08/2026 as 08:30 (Brasilia)",
   "stocks": [
     {
       "ticker": "DIRR3",
       "company": "Direcional",
       "currency": "BRL",
-      "price": "10,64",
-      "priceDate": "24/08/2026",
-      "pl": "6,47x",
-      "pvp": "2,38x",
-      "dy": "14,6%",
+      "price": "11,29",
+      "priceDate": "25/08/2026",
+      "pl": "6,87x",
+      "pvp": "2,53x",
+      "dy": "13,7%",
       "roe": "36,8%",
-      "p12m": -18.65,
-      "pYtd": -24.65,
+      "p12m": -13.68,
+      "pYtd": -20.04,
       "hasNew": false
     },
     {
@@ -47,43 +47,43 @@
       "ticker": "BBAS3",
       "company": "Banco do Brasil",
       "currency": "BRL",
-      "price": "18,60",
-      "priceDate": "24/08/2026",
-      "pl": "7,36x",
-      "pvp": "0,59x",
-      "dy": "3,0%",
+      "price": "19,57",
+      "priceDate": "25/08/2026",
+      "pl": "7,74x",
+      "pvp": "0,62x",
+      "dy": "2,8%",
       "roe": "8,0%",
-      "p12m": -7.5,
-      "pYtd": -13.87,
+      "p12m": -2.67,
+      "pYtd": -9.38,
       "hasNew": true
     },
     {
       "ticker": "ENJU3",
       "company": "Enjoei",
       "currency": "BRL",
-      "price": "0,79",
-      "priceDate": "24/08/2026",
+      "price": "0,77",
+      "priceDate": "25/08/2026",
       "pl": "Prejuizo",
-      "pvp": "0,78x",
-      "dy": "25,5%",
+      "pvp": "0,76x",
+      "dy": "26,2%",
       "roe": "-27,5%",
-      "p12m": -1.04,
-      "pYtd": -7.52,
+      "p12m": -3.55,
+      "pYtd": -9.86,
       "hasNew": false
     },
     {
       "ticker": "HAPV3",
       "company": "Hapvida",
       "currency": "BRL",
-      "price": "6,36",
-      "priceDate": "24/08/2026",
+      "price": "6,42",
+      "priceDate": "25/08/2026",
       "pl": "Prejuizo",
       "pvp": "0,07x",
       "dy": "0,0%",
       "roe": "-0,4%",
-      "p12m": -83.4,
-      "pYtd": -56.82,
-      "hasNew": false
+      "p12m": -83.24,
+      "pYtd": -56.42,
+      "hasNew": true
     }
   ],
   "fatos": {
@@ -296,6 +296,12 @@
       "type": "cvm",
       "items": [
         {
+          "date": "25/08/2026",
+          "badge": "CO",
+          "label": "Redução da Dívida: Recompra de Debêntures e Liquidação Antecipada de Hedge",
+          "url": "#"
+        },
+        {
           "date": "04/05/2026",
           "badge": "CO",
           "label": "Alienação de participação acionária",
@@ -347,12 +353,6 @@
           "date": "15/12/2025",
           "badge": "CO",
           "label": "Ratings",
-          "url": "#"
-        },
-        {
-          "date": "14/11/2025",
-          "badge": "CO",
-          "label": "Aumento de Participação Acionária",
           "url": "#"
         }
       ]
