@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "29/08/2026 as 00:02 (Brasilia)",
+  "lastUpdated": "31/08/2026 as 14:55 (Brasilia)",
   "stocks": [
     {
       "ticker": "DIRR3",
@@ -55,7 +55,7 @@
       "roe": "8,0%",
       "p12m": -0.32,
       "pYtd": -6.6,
-      "hasNew": true
+      "hasNew": false
     },
     {
       "ticker": "ENJU3",
