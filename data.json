@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "01/09/2026 as 12:24 (Brasilia)",
+  "lastUpdated": "01/09/2026 as 19:57 (Brasilia)",
   "stocks": [
     {
       "ticker": "DIRR3",
@@ -55,7 +55,7 @@
       "roe": "8,0%",
       "p12m": -1.14,
       "pYtd": -3.97,
-      "hasNew": false
+      "hasNew": true
     },
     {
       "ticker": "ENJU3",
@@ -166,6 +166,12 @@
       "type": "cvm",
       "items": [
         {
+          "date": "01/09/2026",
+          "badge": "CO",
+          "label": "Atualização do valor JCP Complementar até a data base.",
+          "url": "#"
+        },
+        {
           "date": "19/08/2026",
           "badge": "FR",
           "label": "JCP antecipação 3T26",
@@ -217,12 +223,6 @@
           "date": "13/05/2026",
           "badge": "FR",
           "label": "Projeções 1T26",
-          "url": "#"
-        },
-        {
-          "date": "12/05/2026",
-          "badge": "CO",
-          "label": "Eleição de Administrador",
           "url": "#"
         }
       ]
