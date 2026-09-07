@@ -1,18 +1,18 @@
 {
-  "lastUpdated": "04/09/2026 as 19:44 (Brasilia)",
+  "lastUpdated": "07/09/2026 as 13:18 (Brasilia)",
   "stocks": [
     {
       "ticker": "DIRR3",
       "company": "Direcional",
       "currency": "BRL",
-      "price": "11,47",
-      "priceDate": "03/09/2026",
-      "pl": "6,98x",
-      "pvp": "2,57x",
+      "price": "11,46",
+      "priceDate": "04/09/2026",
+      "pl": "6,97x",
+      "pvp": "2,56x",
       "dy": "13,5%",
       "roe": "36,8%",
-      "p12m": -17.66,
-      "pYtd": -18.77,
+      "p12m": -17.25,
+      "pYtd": -18.84,
       "hasNew": false
     },
     {
@@ -47,14 +47,14 @@
       "ticker": "BBAS3",
       "company": "Banco do Brasil",
       "currency": "BRL",
-      "price": "22,45",
-      "priceDate": "03/09/2026",
-      "pl": "8,88x",
+      "price": "22,52",
+      "priceDate": "04/09/2026",
+      "pl": "8,91x",
       "pvp": "0,71x",
       "dy": "3,1%",
       "roe": "8,0%",
-      "p12m": 12.7,
-      "pYtd": 4.52,
+      "p12m": 13.83,
+      "pYtd": 4.84,
       "hasNew": true
     },
     {
@@ -62,12 +62,12 @@
       "company": "Enjoei",
       "currency": "BRL",
       "price": "0,75",
-      "priceDate": "03/09/2026",
+      "priceDate": "04/09/2026",
       "pl": "Prejuizo",
       "pvp": "0,74x",
       "dy": "26,9%",
       "roe": "-27,5%",
-      "p12m": -0.05,
+      "p12m": 1.02,
       "pYtd": -12.2,
       "hasNew": false
     },
@@ -75,15 +75,15 @@
       "ticker": "HAPV3",
       "company": "Hapvida",
       "currency": "BRL",
-      "price": "7,33",
-      "priceDate": "03/09/2026",
+      "price": "7,26",
+      "priceDate": "04/09/2026",
       "pl": "Prejuizo",
       "pvp": "0,08x",
       "dy": "0,0%",
       "roe": "-0,4%",
-      "p12m": -82.28,
-      "pYtd": -50.24,
-      "hasNew": true
+      "p12m": -82.23,
+      "pYtd": -50.71,
+      "hasNew": false
     }
   ],
   "fatos": {
