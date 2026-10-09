@@ -1,18 +1,18 @@
 {
-  "lastUpdated": "08/10/2026 as 14:45 (Brasilia)",
+  "lastUpdated": "08/10/2026 as 21:56 (Brasilia)",
   "stocks": [
     {
       "ticker": "DIRR3",
       "company": "Direcional",
       "currency": "BRL",
-      "price": "11,65",
-      "priceDate": "07/10/2026",
-      "pl": "7,08x",
-      "pvp": "2,61x",
-      "dy": "13,3%",
+      "price": "11,56",
+      "priceDate": "08/10/2026",
+      "pl": "7,03x",
+      "pvp": "2,59x",
+      "dy": "13,4%",
       "roe": "36,8%",
-      "p12m": -18.44,
-      "pYtd": -17.49,
+      "p12m": -15.92,
+      "pYtd": -18.13,
       "hasNew": false
     },
     {
@@ -47,42 +47,42 @@
       "ticker": "BBAS3",
       "company": "Banco do Brasil",
       "currency": "BRL",
-      "price": "24,18",
-      "priceDate": "07/10/2026",
-      "pl": "9,57x",
-      "pvp": "0,76x",
+      "price": "24,26",
+      "priceDate": "08/10/2026",
+      "pl": "9,60x",
+      "pvp": "0,77x",
       "dy": "2,8%",
       "roe": "8,0%",
-      "p12m": 15.77,
-      "pYtd": 12.57,
+      "p12m": 17.25,
+      "pYtd": 12.94,
       "hasNew": false
     },
     {
       "ticker": "ENJU3",
       "company": "Enjoei",
       "currency": "BRL",
-      "price": "0,73",
-      "priceDate": "07/10/2026",
+      "price": "0,80",
+      "priceDate": "08/10/2026",
       "pl": "Prejuizo",
-      "pvp": "0,72x",
-      "dy": "27,6%",
+      "pvp": "0,79x",
+      "dy": "25,2%",
       "roe": "-27,5%",
-      "p12m": -0.6,
-      "pYtd": -14.54,
-      "hasNew": false
+      "p12m": 10.13,
+      "pYtd": -6.35,
+      "hasNew": true
     },
     {
       "ticker": "HAPV3",
       "company": "Hapvida",
       "currency": "BRL",
-      "price": "8,52",
-      "priceDate": "07/10/2026",
+      "price": "8,82",
+      "priceDate": "08/10/2026",
       "pl": "Prejuizo",
       "pvp": "0,09x",
       "dy": "0,0%",
       "roe": "-0,4%",
-      "p12m": -76.33,
-      "pYtd": -42.16,
+      "p12m": -75.04,
+      "pYtd": -40.12,
       "hasNew": false
     }
   ],
@@ -231,6 +231,12 @@
       "type": "cvm",
       "items": [
         {
+          "date": "08/10/2026",
+          "badge": "CO",
+          "label": "Encerramento do Período de Ajuste e Implementação do Grupamento de Ações",
+          "url": "#"
+        },
+        {
           "date": "08/09/2026",
           "badge": "CO",
           "label": "Grupamento de Ações",
@@ -282,12 +288,6 @@
           "date": "14/05/2026",
           "badge": "FR",
           "label": "Contratação de Novo Formador de Mercado",
-          "url": "#"
-        },
-        {
-          "date": "11/05/2026",
-          "badge": "FR",
-          "label": "Descontinuidade das Operações do Elo7",
           "url": "#"
         }
       ]
