@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "14/10/2026 as 12:43 (Brasilia)",
+  "lastUpdated": "14/10/2026 as 20:36 (Brasilia)",
   "stocks": [
     {
       "ticker": "DIRR3",
@@ -13,7 +13,7 @@
       "roe": "36,8%",
       "p12m": -10.22,
       "pYtd": -15.51,
-      "hasNew": false
+      "hasNew": true
     },
     {
       "ticker": "INBR32",
@@ -91,6 +91,12 @@
       "type": "cvm",
       "items": [
         {
+          "date": "14/10/2026",
+          "badge": "CO",
+          "label": "Prévia Operacional 3T26",
+          "url": "#"
+        },
+        {
           "date": "08/09/2026",
           "badge": "CO",
           "label": "Entrada no IBrX 50",
@@ -142,12 +148,6 @@
           "date": "13/11/2025",
           "badge": "CO",
           "label": "Resultado 3T25",
-          "url": "#"
-        },
-        {
-          "date": "22/10/2025",
-          "badge": "CO",
-          "label": "Conclusão de Operação de Alienação de Participação",
           "url": "#"
         }
       ]
