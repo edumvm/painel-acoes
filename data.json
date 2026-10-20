@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "19/10/2026 as 21:04 (Brasilia)",
+  "lastUpdated": "20/10/2026 as 12:34 (Brasilia)",
   "stocks": [
     {
       "ticker": "DIRR3",
@@ -83,7 +83,7 @@
       "roe": "-0,4%",
       "p12m": -73.01,
       "pYtd": -39.71,
-      "hasNew": true
+      "hasNew": false
     }
   ],
   "fatos": {
