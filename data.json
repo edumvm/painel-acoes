@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "23/10/2026 as 20:43 (Brasilia)",
+  "lastUpdated": "26/10/2026 as 14:08 (Brasilia)",
   "stocks": [
     {
       "ticker": "DIRR3",
@@ -13,7 +13,7 @@
       "roe": "36,8%",
       "p12m": -19.33,
       "pYtd": -18.13,
-      "hasNew": true
+      "hasNew": false
     },
     {
       "ticker": "INBR32",
