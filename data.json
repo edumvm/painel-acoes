@@ -1,18 +1,18 @@
 {
-  "lastUpdated": "26/10/2026 as 21:12 (Brasilia)",
+  "lastUpdated": "27/10/2026 as 13:13 (Brasilia)",
   "stocks": [
     {
       "ticker": "DIRR3",
       "company": "Direcional",
       "currency": "BRL",
-      "price": "11,56",
-      "priceDate": "23/10/2026",
-      "pl": "7,03x",
-      "pvp": "2,59x",
-      "dy": "13,4%",
+      "price": "8,78",
+      "priceDate": "26/10/2026",
+      "pl": "5,34x",
+      "pvp": "1,96x",
+      "dy": "17,7%",
       "roe": "36,8%",
-      "p12m": -19.33,
-      "pYtd": -18.13,
+      "p12m": -40.02,
+      "pYtd": -37.82,
       "hasNew": false
     },
     {
@@ -47,42 +47,42 @@
       "ticker": "BBAS3",
       "company": "Banco do Brasil",
       "currency": "BRL",
-      "price": "24,72",
-      "priceDate": "23/10/2026",
-      "pl": "9,78x",
-      "pvp": "0,78x",
-      "dy": "2,8%",
+      "price": "17,47",
+      "priceDate": "26/10/2026",
+      "pl": "6,91x",
+      "pvp": "0,55x",
+      "dy": "3,9%",
       "roe": "8,0%",
-      "p12m": 22.47,
-      "pYtd": 15.08,
-      "hasNew": false
+      "p12m": -12.73,
+      "pYtd": -18.67,
+      "hasNew": true
     },
     {
       "ticker": "ENJU3",
       "company": "Enjoei",
       "currency": "BRL",
-      "price": "8,80",
-      "priceDate": "23/10/2026",
+      "price": "7,30",
+      "priceDate": "26/10/2026",
       "pl": "Prejuizo",
-      "pvp": "0,87x",
-      "dy": "22,9%",
+      "pvp": "0,72x",
+      "dy": "27,6%",
       "roe": "-27,5%",
-      "p12m": 26.71,
-      "pYtd": 3.02,
+      "p12m": 2.74,
+      "pYtd": -14.54,
       "hasNew": true
     },
     {
       "ticker": "HAPV3",
       "company": "Hapvida",
       "currency": "BRL",
-      "price": "8,83",
-      "priceDate": "23/10/2026",
+      "price": "3,98",
+      "priceDate": "26/10/2026",
       "pl": "Prejuizo",
-      "pvp": "0,09x",
+      "pvp": "0,04x",
       "dy": "0,0%",
       "roe": "-0,4%",
-      "p12m": -72.71,
-      "pYtd": -40.05,
+      "p12m": -87.73,
+      "pYtd": -72.98,
       "hasNew": false
     }
   ],
@@ -166,6 +166,12 @@
       "type": "cvm",
       "items": [
         {
+          "date": "27/10/2026",
+          "badge": "CO",
+          "label": "Período de Silêncio 3T26",
+          "url": "#"
+        },
+        {
           "date": "08/09/2026",
           "badge": "CO",
           "label": "JCP Complementar atualização até a data de pagamento",
@@ -217,12 +223,6 @@
           "date": "20/05/2026",
           "badge": "FR",
           "label": "JCP Antecipação 2T26",
-          "url": "#"
-        },
-        {
-          "date": "13/05/2026",
-          "badge": "FR",
-          "label": "Remuneração Complementar aos Acionistas 1T26",
           "url": "#"
         }
       ]
