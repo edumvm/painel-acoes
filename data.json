@@ -1,18 +1,18 @@
 {
-  "lastUpdated": "28/10/2026 as 14:01 (Brasilia)",
+  "lastUpdated": "28/10/2026 as 21:33 (Brasilia)",
   "stocks": [
     {
       "ticker": "DIRR3",
       "company": "Direcional",
       "currency": "BRL",
-      "price": "9,25",
-      "priceDate": "27/10/2026",
-      "pl": "5,63x",
-      "pvp": "2,07x",
-      "dy": "16,8%",
+      "price": "8,77",
+      "priceDate": "28/10/2026",
+      "pl": "5,33x",
+      "pvp": "1,96x",
+      "dy": "17,7%",
       "roe": "36,8%",
-      "p12m": -36.81,
-      "pYtd": -34.49,
+      "p12m": -40.2,
+      "pYtd": -37.89,
       "hasNew": false
     },
     {
@@ -47,42 +47,42 @@
       "ticker": "BBAS3",
       "company": "Banco do Brasil",
       "currency": "BRL",
-      "price": "17,38",
-      "priceDate": "27/10/2026",
-      "pl": "6,88x",
-      "pvp": "0,55x",
-      "dy": "4,0%",
+      "price": "16,79",
+      "priceDate": "28/10/2026",
+      "pl": "6,64x",
+      "pvp": "0,53x",
+      "dy": "4,1%",
       "roe": "8,0%",
-      "p12m": -13.18,
-      "pYtd": -19.09,
+      "p12m": -17.45,
+      "pYtd": -21.83,
       "hasNew": true
     },
     {
       "ticker": "ENJU3",
       "company": "Enjoei",
       "currency": "BRL",
-      "price": "7,95",
-      "priceDate": "27/10/2026",
+      "price": "6,90",
+      "priceDate": "28/10/2026",
       "pl": "Prejuizo",
-      "pvp": "0,78x",
-      "dy": "25,4%",
+      "pvp": "0,68x",
+      "dy": "29,2%",
       "roe": "-27,5%",
-      "p12m": 11.89,
-      "pYtd": -6.93,
+      "p12m": -3.97,
+      "pYtd": -19.22,
       "hasNew": true
     },
     {
       "ticker": "HAPV3",
       "company": "Hapvida",
       "currency": "BRL",
-      "price": "4,18",
-      "priceDate": "27/10/2026",
+      "price": "4,25",
+      "priceDate": "28/10/2026",
       "pl": "Prejuizo",
       "pvp": "0,04x",
       "dy": "0,0%",
       "roe": "-0,4%",
-      "p12m": -87.11,
-      "pYtd": -71.62,
+      "p12m": -86.88,
+      "pYtd": -71.15,
       "hasNew": false
     }
   ],
@@ -166,6 +166,12 @@
       "type": "cvm",
       "items": [
         {
+          "date": "28/10/2026",
+          "badge": "CO",
+          "label": "Renúncia e indicação de administrador",
+          "url": "#"
+        },
+        {
           "date": "27/10/2026",
           "badge": "CO",
           "label": "Período de Silêncio 3T26",
@@ -217,12 +223,6 @@
           "date": "28/05/2026",
           "badge": "CO",
           "label": "Comunicado ao Mercado - Relatório Anual 2025",
-          "url": "#"
-        },
-        {
-          "date": "20/05/2026",
-          "badge": "FR",
-          "label": "JCP Antecipação 2T26",
           "url": "#"
         }
       ]
