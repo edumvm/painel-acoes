@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "30/10/2026 as 21:19 (Brasilia)",
+  "lastUpdated": "02/11/2026 as 17:38 (Brasilia)",
   "stocks": [
     {
       "ticker": "DIRR3",
@@ -231,6 +231,12 @@
       "type": "cvm",
       "items": [
         {
+          "date": "30/10/2026",
+          "badge": "CO",
+          "label": "Resultado do Leilão de Frações de Ações e Data de Pagamento",
+          "url": "#"
+        },
+        {
           "date": "22/10/2026",
           "badge": "CO",
           "label": "Leilão de Frações e Procedimentos para Crédito",
@@ -282,12 +288,6 @@
           "date": "03/06/2026",
           "badge": "CO",
           "label": "Pagamento Restituição e Tratamento Tributário",
-          "url": "#"
-        },
-        {
-          "date": "01/06/2026",
-          "badge": "CO",
-          "label": "Alteração do Escriturador de Ações",
           "url": "#"
         }
       ]
