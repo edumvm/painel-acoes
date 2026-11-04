@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "03/11/2026 as 15:14 (Brasilia)",
+  "lastUpdated": "03/11/2026 as 22:00 (Brasilia)",
   "stocks": [
     {
       "ticker": "DIRR3",
@@ -83,7 +83,7 @@
       "roe": "-0,4%",
       "p12m": -86.71,
       "pYtd": -71.49,
-      "hasNew": false
+      "hasNew": true
     }
   ],
   "fatos": {
@@ -296,6 +296,12 @@
       "type": "cvm",
       "items": [
         {
+          "date": "03/11/2026",
+          "badge": "CO",
+          "label": "Renúncia de Membro do Conselho de Administração",
+          "url": "#"
+        },
+        {
           "date": "09/10/2026",
           "badge": "CO",
           "label": "Rating",
@@ -347,12 +353,6 @@
           "date": "13/01/2026",
           "badge": "CO",
           "label": "Vice-Presidência Comercial",
-          "url": "#"
-        },
-        {
-          "date": "22/12/2025",
-          "badge": "FR",
-          "label": "Processo Sucessório da Administração",
           "url": "#"
         }
       ]
