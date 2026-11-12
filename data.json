@@ -1,18 +1,18 @@
 {
-  "lastUpdated": "11/11/2026 as 15:24 (Brasilia)",
+  "lastUpdated": "11/11/2026 as 23:05 (Brasilia)",
   "stocks": [
     {
       "ticker": "DIRR3",
       "company": "Direcional",
       "currency": "BRL",
-      "price": "9,16",
-      "priceDate": "10/11/2026",
-      "pl": "5,77x",
-      "pvp": "1,90x",
-      "dy": "16,9%",
+      "price": "9,54",
+      "priceDate": "11/11/2026",
+      "pl": "6,00x",
+      "pvp": "1,98x",
+      "dy": "16,2%",
       "roe": "32,9%",
-      "p12m": -42.05,
-      "pYtd": -35.13,
+      "p12m": -40.03,
+      "pYtd": -32.44,
       "hasNew": false
     },
     {
@@ -47,42 +47,42 @@
       "ticker": "BBAS3",
       "company": "Banco do Brasil",
       "currency": "BRL",
-      "price": "17,10",
-      "priceDate": "10/11/2026",
-      "pl": "6,77x",
-      "pvp": "0,54x",
-      "dy": "4,0%",
-      "roe": "8,0%",
-      "p12m": -23.42,
-      "pYtd": -20.39,
-      "hasNew": false
+      "price": "16,89",
+      "priceDate": "11/11/2026",
+      "pl": "7,64x",
+      "pvp": "0,53x",
+      "dy": "4,1%",
+      "roe": "7,0%",
+      "p12m": -24.0,
+      "pYtd": -21.37,
+      "hasNew": true
     },
     {
       "ticker": "ENJU3",
       "company": "Enjoei",
       "currency": "BRL",
-      "price": "6,93",
-      "priceDate": "10/11/2026",
+      "price": "7,10",
+      "priceDate": "11/11/2026",
       "pl": "Prejuizo",
-      "pvp": "0,68x",
-      "dy": "29,1%",
+      "pvp": "0,70x",
+      "dy": "28,4%",
       "roe": "-27,5%",
-      "p12m": -8.62,
-      "pYtd": -18.87,
+      "p12m": -7.35,
+      "pYtd": -16.88,
       "hasNew": false
     },
     {
       "ticker": "HAPV3",
       "company": "Hapvida",
       "currency": "BRL",
-      "price": "4,25",
-      "priceDate": "10/11/2026",
+      "price": "4,63",
+      "priceDate": "11/11/2026",
       "pl": "Prejuizo",
-      "pvp": "0,04x",
+      "pvp": "0,05x",
       "dy": "0,0%",
-      "roe": "-0,4%",
-      "p12m": -86.32,
-      "pYtd": -71.15,
+      "roe": "-0,3%",
+      "p12m": -85.24,
+      "pYtd": -68.57,
       "hasNew": true
     }
   ],
@@ -166,6 +166,18 @@
       "type": "cvm",
       "items": [
         {
+          "date": "11/11/2026",
+          "badge": "FR",
+          "label": "Remuneração aos acionistas para 2026 e 2027",
+          "url": "#"
+        },
+        {
+          "date": "11/11/2026",
+          "badge": "FR",
+          "label": "Projeções 2026 - revisadas",
+          "url": "#"
+        },
+        {
           "date": "28/10/2026",
           "badge": "CO",
           "label": "Renúncia e indicação de administrador",
@@ -211,18 +223,6 @@
           "date": "22/07/2026",
           "badge": "CO",
           "label": "Medida Provisória 1376",
-          "url": "#"
-        },
-        {
-          "date": "26/06/2026",
-          "badge": "CO",
-          "label": "Repactuação do Cronograma do IHCD",
-          "url": "#"
-        },
-        {
-          "date": "28/05/2026",
-          "badge": "CO",
-          "label": "Comunicado ao Mercado - Relatório Anual 2025",
           "url": "#"
         }
       ]
@@ -296,6 +296,12 @@
       "type": "cvm",
       "items": [
         {
+          "date": "11/11/2026",
+          "badge": "CO",
+          "label": "Venda dos Imóveis do Hospital Octaviano Neves",
+          "url": "#"
+        },
+        {
           "date": "03/11/2026",
           "badge": "CO",
           "label": "Renúncia de Membro do Conselho de Administração",
@@ -347,12 +353,6 @@
           "date": "27/01/2026",
           "badge": "CO",
           "label": "Rescisão de Contrato Vinculante ? Hospital do Méier (RJ)",
-          "url": "#"
-        },
-        {
-          "date": "13/01/2026",
-          "badge": "CO",
-          "label": "Vice-Presidência Comercial",
           "url": "#"
         }
       ]
