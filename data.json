@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "12/11/2026 as 22:37 (Brasilia)",
+  "lastUpdated": "13/11/2026 as 15:24 (Brasilia)",
   "stocks": [
     {
       "ticker": "DIRR3",
@@ -64,9 +64,9 @@
       "price": "7,22",
       "priceDate": "12/11/2026",
       "pl": "Prejuizo",
-      "pvp": "0,71x",
+      "pvp": "0,76x",
       "dy": "27,9%",
-      "roe": "-27,5%",
+      "roe": "-34,2%",
       "p12m": -6.75,
       "pYtd": -15.48,
       "hasNew": false
