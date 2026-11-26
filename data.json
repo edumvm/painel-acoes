@@ -1,18 +1,18 @@
 {
-  "lastUpdated": "25/11/2026 as 17:23 (Brasilia)",
+  "lastUpdated": "26/11/2026 as 00:20 (Brasilia)",
   "stocks": [
     {
       "ticker": "DIRR3",
       "company": "Direcional",
       "currency": "BRL",
-      "price": "9,05",
-      "priceDate": "24/11/2026",
-      "pl": "5,70x",
-      "pvp": "1,88x",
-      "dy": "17,1%",
+      "price": "9,33",
+      "priceDate": "25/11/2026",
+      "pl": "5,87x",
+      "pvp": "1,93x",
+      "dy": "16,6%",
       "roe": "32,9%",
-      "p12m": -45.29,
-      "pYtd": -35.91,
+      "p12m": -43.99,
+      "pYtd": -33.92,
       "hasNew": false
     },
     {
@@ -47,28 +47,28 @@
       "ticker": "BBAS3",
       "company": "Banco do Brasil",
       "currency": "BRL",
-      "price": "14,18",
-      "priceDate": "24/11/2026",
-      "pl": "6,42x",
-      "pvp": "0,45x",
-      "dy": "4,9%",
+      "price": "14,69",
+      "priceDate": "25/11/2026",
+      "pl": "6,65x",
+      "pvp": "0,46x",
+      "dy": "4,7%",
       "roe": "7,0%",
-      "p12m": -33.93,
-      "pYtd": -33.98,
+      "p12m": -31.05,
+      "pYtd": -31.61,
       "hasNew": false
     },
     {
       "ticker": "ENJU3",
       "company": "Enjoei",
       "currency": "BRL",
-      "price": "6,12",
-      "priceDate": "24/11/2026",
+      "price": "6,13",
+      "priceDate": "25/11/2026",
       "pl": "Prejuizo",
       "pvp": "0,64x",
-      "dy": "33,0%",
+      "dy": "32,9%",
       "roe": "-34,2%",
-      "p12m": -20.14,
-      "pYtd": -28.35,
+      "p12m": -23.21,
+      "pYtd": -28.24,
       "hasNew": false
     },
     {
@@ -76,14 +76,14 @@
       "company": "Hapvida",
       "currency": "BRL",
       "price": "6,10",
-      "priceDate": "24/11/2026",
+      "priceDate": "25/11/2026",
       "pl": "Prejuizo",
       "pvp": "0,06x",
       "dy": "0,0%",
       "roe": "-0,3%",
-      "p12m": -64.98,
+      "p12m": -64.39,
       "pYtd": -58.59,
-      "hasNew": false
+      "hasNew": true
     }
   ],
   "fatos": {
@@ -296,6 +296,12 @@
       "type": "cvm",
       "items": [
         {
+          "date": "25/11/2026",
+          "badge": "CO",
+          "label": "Recompra de Debêntures",
+          "url": "#"
+        },
+        {
           "date": "11/11/2026",
           "badge": "CO",
           "label": "Venda dos Imóveis do Hospital Octaviano Neves",
@@ -347,12 +353,6 @@
           "date": "02/02/2026",
           "badge": "CO",
           "label": "Entrega de Imóvel Não Operacional",
-          "url": "#"
-        },
-        {
-          "date": "27/01/2026",
-          "badge": "CO",
-          "label": "Rescisão de Contrato Vinculante ? Hospital do Méier (RJ)",
           "url": "#"
         }
       ]
